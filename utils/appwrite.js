@@ -29,3 +29,16 @@ export async function createUserData(user) {
   )
   return createDoc
 }
+export async function getAllQuestion(stateQuData) {
+  const question = await DB.listDocuments(
+    "user_data",
+    "quiz_collection"
+  )
+  const getQData = question.documents.map(data =>({
+          id: data.$id,
+          category: data.category,
+          price: data.price,
+          quest: data.quest
+  }))
+  stateQuData.set(getQData)
+}

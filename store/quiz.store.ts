@@ -3,6 +3,7 @@ interface IquizQuest{
     category:string,
     price:number,
     quest:string,
+    answer:string,
     link:string,
     slug:string
 }
@@ -12,6 +13,7 @@ const defaultQuiz:  IquizQuest[] = [
         category:"none",
         price:0,
         quest:" ",
+        answer:" ",
         link:" ",
         slug:" "
     }
@@ -40,8 +42,9 @@ export function generateCardData(quizState: { quiz: IquizQuest[] }){
       price: Number(item.price),
       quest: String(item.quest),
       id: String(item.id),
-      Link: `/${itemIndex}.${categoryIndex}`,
-      slug: `${itemIndex}.${categoryIndex}`,
+      answer: String(item.answer),
+      link: `/${categoryIndex}.${itemIndex}`,
+      slug: `${categoryIndex}.${itemIndex}`,
     })
   })
   return Object.entries(grouped).map(([name, quiz]) => ({

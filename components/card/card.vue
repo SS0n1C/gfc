@@ -1,8 +1,7 @@
 <script setup>
-import {CARD_DATA} from "./card.data"
   const useQuizData = getQuizData() 
   const getAllCard = computed(()=> generateCardData(useQuizData))
-  console.log(getAllCard.value)
+  const CARD_DATA = getAllCard.value
 </script>
 
 <template>

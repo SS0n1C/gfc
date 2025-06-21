@@ -1,6 +1,8 @@
 <script setup>
 import { useRoute } from 'vue-router';
-import { CARD_DATA } from '~/components/card/card.data';
+const useQuizData = getQuizData() 
+const getAllCard = computed(()=> generateCardData(useQuizData))
+const CARD_DATA = getAllCard.value
 const route = useRoute()
 const cardData = Object.values(CARD_DATA);
 const slug = route.params.slug
@@ -19,7 +21,7 @@ const item = cardData.find(category =>
       <div>{{ itemText.price }}</div>
     </div>
     <div class="flex justify-center items-center grow">
-      <div>{{ itemText.text }}</div>
+      <div>{{ itemText.quest }}</div>
     </div>
   </div>
   <div v-else>

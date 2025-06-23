@@ -18,7 +18,7 @@ onMounted(async() =>{
         const user = await account.get()
         const userScore = await getUserData(user)
         store.set({
-            score:userScore
+            score:userScore.data
         })
     } catch (error) {
         

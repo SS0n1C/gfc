@@ -17,7 +17,7 @@ export async function getUserData(data) {
     if (docs.documents.length === 0) {
     return null
   }
-  const userScore = docs.documents[0].data;
+  const userScore = docs.documents[0];
   return userScore
 }
 export async function createUserData(user) {
@@ -25,7 +25,7 @@ export async function createUserData(user) {
     "user_data",
     "user_collection",
       ID.unique(),
-      {userID: user.$id, data:"2000"}
+      {userID: user.$id, data:"2000",questID:0}
   )
   return createDoc
 }

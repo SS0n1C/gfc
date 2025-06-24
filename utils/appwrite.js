@@ -18,7 +18,18 @@ export async function getUserData(data) {
     return null
   }
   const userScore = docs.documents[0];
-  return userScore
+  return userScore 
+}
+export async function changeUserData(userData,userQuestID,userDataScore){
+  const docs = await DB.updateDocument(
+  "user_data",
+  "user_collection",
+  userData.$id,
+   {
+      questID: userQuestID,
+      data: userDataScore,
+    }
+)
 }
 export async function createUserData(user) {
   const createDoc =  await DB.createDocument(

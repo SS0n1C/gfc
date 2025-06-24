@@ -1,6 +1,6 @@
 <script setup>
-import { useRoute } from 'vue-router';
 const useQuizData = getQuizData() 
+const router = useRouter()
 const response = await account.get()
 const useUserData = await getUserData(response)
 const getAllCard = computed(()=> generateCardData(useQuizData))
@@ -12,9 +12,18 @@ let itemText = {}
 const item = cardData.find(category =>
   itemText = category.quiz.find(item => item.slug == slug)
 );
-function right(){
-  useUserData.questID.push(itemText.id)
-  console.log(useUserData)
+async function right(){
+  try{
+    const oldUseQId = useUserData.questID
+    const oldUserData = useUserData.data
+    const userQuestID = [...oldUseQId,itemText.id]
+    const userScore = String(Number(oldUserData) + Number(itemText.price))
+    await changeUserData(useUserData,userQuestID,userScore)
+  }
+  finally{
+    await router.push("/")
+  }
+
 }
 </script>
 <template>

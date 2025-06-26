@@ -23,7 +23,15 @@ async function right(){
   finally{
     await router.push("/")
   }
-
+}
+async function wrong(){
+  try{
+    const oldUserQId = useUserData.questID
+    const userQuestID = [...oldUserQId,itemText.id]
+    await changeUserData(useUserData,userQuestID)
+  } finally {
+    await router.push("/")
+  }
 }
 </script>
 <template>

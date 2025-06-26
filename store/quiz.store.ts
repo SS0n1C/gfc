@@ -5,7 +5,8 @@ interface IquizQuest{
     quest:string,
     answer:string,
     link:string,
-    slug:string
+    slug:string,
+    alreadyUse:boolean,
 }
 const defaultQuiz:  IquizQuest[] = [
     {
@@ -15,7 +16,8 @@ const defaultQuiz:  IquizQuest[] = [
         quest:" ",
         answer:" ",
         link:" ",
-        slug:" "
+        slug:" ",
+        alreadyUse:false,
     }
 ]
 export const getQuizData = defineStore("questionData",{
@@ -45,6 +47,8 @@ export function generateCardData(quizState: { quiz: IquizQuest[] }){
       answer: String(item.answer),
       link: `/${categoryIndex}.${itemIndex}`,
       slug: `${categoryIndex}.${itemIndex}`,
+      alreadyUse:false,
+
     })
   })
   return Object.entries(grouped).map(([name, quiz]) => ({

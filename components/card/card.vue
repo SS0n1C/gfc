@@ -1,7 +1,15 @@
 <script setup>
+  const getUser = await account.get()
+  const useUserData = await getUserData(getUser)
   const useQuizData = getQuizData() 
   const getAllCard = computed(()=> generateCardData(useQuizData))
   const CARD_DATA = getAllCard.value
+
+    CARD_DATA.map(allQArr =>{
+      allQArr.quiz.map(questItem =>{
+        questItem.alreadyUse = useUserData.questID.includes(questItem.id)
+      })
+    })
 </script>
 
 <template>
@@ -13,7 +21,7 @@
     <div class="card__question flex  items-center justify-between flex-col min-h-full"
     v-for="question in card.quiz"
     :key="question.slug">
-      <div class="card__question--item"><NuxtLink :to="question.link">{{ question.price }}</NuxtLink></div>
+      <div class="card__question--item" :class="{'itemAlreadyUse': question.alreadyUse}"><NuxtLink :to="question.link">{{ question.price }}</NuxtLink></div>
     </div>
   </div>
 </div>
@@ -39,6 +47,10 @@
     min-width: 80%;
     row-gap: 5px;
 
+    .itemAlreadyUse{
+      background-color: darkgrey;
+      pointer-events: none; 
+    }
     &--item{
       background-color: white;
       width:100%;

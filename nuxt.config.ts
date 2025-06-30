@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: false },
   modules: ['@nuxt/image', '@nuxtjs/tailwindcss', '@nuxt/icon', '@pinia/nuxt',],
   css: ['@/assets/css/app.scss'],
+  ssr: false,
   vite: {
     css: {
       preprocessorOptions: {
@@ -15,5 +16,5 @@ export default defineNuxtConfig({
   },
   pinia:{
     storesDirs:['./store/**'],
-  }
+  },
 })

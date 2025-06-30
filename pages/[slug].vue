@@ -1,4 +1,5 @@
 <script setup>
+const scratch = ref(null)
 const useQuizData = getQuizData() 
 const router = useRouter()
 const response = await account.get()
@@ -33,11 +34,14 @@ async function wrong(){
     await router.push("/")
   }
 }
+function reveal() {
+  scratch.value?.revealAll()
+}
 </script>
 <template>
 <NuxtLayout>
   <section class="flex justify-around bg-[white] min-h-screen rounded-t-[20px] p-8">
-  <div v-if="item" class="min-w-full flex flex-col">
+  <div class="min-w-full flex flex-col">
     <div class="flex justify-around">
       <div>{{ item.name }}</div>
       <div>{{ itemText.price }}</div>
@@ -45,13 +49,20 @@ async function wrong(){
     <div class="flex justify-center items-center grow">
       <div>{{ itemText.quest }}</div>
     </div>
+    <div class="flex justify-center items-center grow">
+      <uiScratch 
+          ref="scratch" 
+          :width="200" 
+          :height="60" 
+          :threshold="80" 
+          @completed="reveal">
+      <div class="flex justify-center items-center grow">lorem</div>
+    </uiScratch>
+    </div>
     <div class="flex justify-center items-center">
       <button type="button" class="btn" @click="right()">Yes</button>
       <button type="button" class="btn" @click="wrong()">No</button>
     </div>
-  </div>
-  <div v-else>
-    <h2>EROR</h2>
   </div>
 </section>
 </NuxtLayout>

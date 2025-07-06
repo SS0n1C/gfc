@@ -21,16 +21,24 @@ onMounted(async() =>{
             score:userScore.data
         })
     } catch (error) {
-        
+        console.log(error)
     }
 })
-
+function goToRevard(){
+    router.push("/reward")
+}
 
 </script>
 <template>
-<header class="header justify-end items-center flex bg-[#243c5a]">
-    <div class="score pr-[20px]">{{ userInfo.user.score }}</div>
-    <div class="avatar"><NuxtImg
+<header class="header justify-between items-center flex bg-[#243c5a]">
+    <div>
+    <div class="revard items-center flex bg-[white] rounded-2xl p-1" @click="goToRevard()">
+        <Icon name="noto:trophy" size="28px" />
+    </div>
+    </div>
+    <div class="items-center flex mr-[10px]">
+        <div class="score pr-[20px]">{{ userInfo.user.score }}</div>
+        <div class="avatar"><NuxtImg
             src="/ava.png"
             alt="avatar"
             width="35px"
@@ -44,6 +52,8 @@ onMounted(async() =>{
             <Icon name="uil:exit" style="color: white" size="16px" />
         </div>
     </div>
+    </div>
+
 </header>
 </template>
 
@@ -51,9 +61,18 @@ onMounted(async() =>{
 .header{
     padding:20px 10px;
     @include font($Lucky,500,20px,20px,white);
+    
+}
+.revard{
+    margin-left:10px;
+    border:1.5px gold solid;
+    cursor:pointer;
 }
 .login{
     @include flex;
+    &__logout{
+         cursor:pointer;
+    }
 }
 .avatar{
     background-color: white;

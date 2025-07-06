@@ -1,4 +1,8 @@
 import { APP_WRITE_ID} from '@/appconstans'
+import {DB_ID} from '@/appconstans'
+import {USER_COLLECTION} from '@/appconstans'
+import {QUIZ_COLLECTION} from '@/appconstans'
+import{REWARD_COLLECTION} from '@/appconstans'
 import { Account, Client, Databases,Query, ID} from 'appwrite'
 export const client = new Client()
 
@@ -10,8 +14,8 @@ export const DB = new Databases(client)
 
 export async function getUserData(data) {
   const docs = await DB.listDocuments(
-  "user_data",
-  "user_collection",
+  DB_ID,
+  USER_COLLECTION,
   [Query.equal("userID", data.$id)])
 
     if (docs.documents.length === 0) {
@@ -22,8 +26,8 @@ export async function getUserData(data) {
 }
 export async function changeUserData(userData,userQuestID,userDataScore){
   const docs = await DB.updateDocument(
-  "user_data",
-  "user_collection",
+  DB_ID,
+  USER_COLLECTION,
   userData.$id,
    {
       questID: userQuestID,
@@ -33,8 +37,8 @@ export async function changeUserData(userData,userQuestID,userDataScore){
 }
 export async function createUserData(user) {
   const createDoc =  await DB.createDocument(
-    "user_data",
-    "user_collection",
+    DB_ID,
+    USER_COLLECTION,
       ID.unique(),
       {userID: user.$id, data:"2000",questID:0}
   )
@@ -42,8 +46,8 @@ export async function createUserData(user) {
 }
 export async function getAllQuestion(stateQuData) {
   const question = await DB.listDocuments(
-    "user_data",
-    "quiz_collection"
+    DB_ID,
+    QUIZ_COLLECTION,
   )
   const getQData = question.documents.map(data =>({
           id: data.$id,
@@ -52,4 +56,12 @@ export async function getAllQuestion(stateQuData) {
           quest: data.quest
   }))
   stateQuData.set(getQData)
+}
+export async function allReward(){
+  const getReward = await DB.listDocuments(
+    DB_ID,
+    REWARD_COLLECTION,
+  )
+  const getRewardList = getReward.documents
+  console.log(getRewardList)
 }

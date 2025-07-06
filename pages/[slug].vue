@@ -1,12 +1,16 @@
 <script setup>
 const scratch = ref(null)
-const useQuizData = getQuizData() 
 const router = useRouter()
+const route = useRoute()
+const store = useAutStore()
+
 const response = await account.get()
 const useUserData = await getUserData(response)
+const useQuizData = getQuizData()
+const awaitQuestionBD = await getAllQuestion(useQuizData)
+
 const getAllCard = computed(()=> generateCardData(useQuizData))
 const CARD_DATA = getAllCard.value
-const route = useRoute()
 const cardData = Object.values(CARD_DATA);
 const slug = route.params.slug
 let itemText = {}
@@ -37,6 +41,15 @@ async function wrong(){
 function reveal() {
   scratch.value?.revealAll()
 }
+onMounted(async()=>{
+  try {
+    if(response){
+      store.set(response)
+    }
+  } catch (error) {
+    router.push("/login")
+  }
+})
 </script>
 <template>
 <NuxtLayout>

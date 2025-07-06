@@ -7,6 +7,7 @@ interface IquizQuest{
     link:string,
     slug:string,
     alreadyUse:boolean,
+    name:string,
 }
 const defaultQuiz:  IquizQuest[] = [
     {
@@ -18,6 +19,7 @@ const defaultQuiz:  IquizQuest[] = [
         link:" ",
         slug:" ",
         alreadyUse:false,
+        name:"name",
     }
 ]
 export const getQuizData = defineStore("questionData",{

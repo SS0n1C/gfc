@@ -1,14 +1,10 @@
 <script setup>
-
-
 </script>
 
 
 <template>
     <NuxtLayout>
-        <RewardPrize> 
-            
-        </rewardPrize>
+        <RewardPrize/> 
     </NuxtLayout>
 </template>
 

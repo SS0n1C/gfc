@@ -1,6 +1,7 @@
 <script setup>
 const store = useAutStore()
 const router = useRouter()
+const routed = useRoute()
 const userInfo = useAutStore()
 const loader = useLoading()
 const logout = async () => {
@@ -25,7 +26,12 @@ onMounted(async() =>{
     }
 })
 function goToRevard(){
-    router.push("/reward")
+    if(routed.path == '/reward'){
+        router.push("/")
+    }else{
+        router.push("/reward")
+    }
+
 }
 
 </script>
@@ -33,7 +39,8 @@ function goToRevard(){
 <header class="header justify-between items-center flex bg-[#243c5a]">
     <div>
     <div class="revard items-center flex bg-[white] rounded-2xl p-1" @click="goToRevard()">
-        <Icon name="noto:trophy" size="28px" />
+        <Icon v-if="routed.path == '/reward'" name="fluent-color:question-circle-32" size="28px" />
+        <Icon v-else name="noto:trophy" size="28px" />
     </div>
     </div>
     <div class="items-center flex mr-[10px]">

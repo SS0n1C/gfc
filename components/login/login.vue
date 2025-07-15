@@ -53,13 +53,15 @@ onMounted(async() =>{
                 LOGIN
             </div>
             <div class="formSection--input">
+                <Icon name="uiw:mail" style="color: #FACC15" />
                 <input type="email"
-                placeholder="login"
+                placeholder="Email address"
                 v-model="userLogin">
             </div>
             <div class="formSection--input">
+                <Icon name="si:lock-duotone" style="color:#FACC15" size="17px"/>
                 <input type="password"
-                placeholder="password"
+                placeholder="Password"
                 v-model="userPassword">
             </div>
             <div class="formSection--button w-[140px] h-[40px] mt-4 bg-pink-500">
@@ -75,24 +77,44 @@ onMounted(async() =>{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background: $deepBlue;
     border-radius: 10px;
 
 }
 .formSection{
+    position: relative;
     width: 70%;
-    max-width: 600px;
-    height: 300px; 
+    max-width: 300px;
+    height: 400px; 
     border-radius: 20px;
+    background: linear-gradient(135deg, #2b2c4d 0%, #0F1021 100%);
+    border:2px rgba(20, 20, 209, 0.63) solid;
 
-    & input{
+    &::after{
+        content: "";
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
         border-radius: 20px;
-        padding: 5px 10px;
-        border: 3px blue solid;
-        background-color: aqua;
+        border: 1px solid $gold; 
+        pointer-events: none;
+    }
+
+    &--input{
+        border-radius: 20px;
+        padding: 7px 12px;
+        border: 1px $gold solid;
+        background: $deepBlue;
+
+        & input{
+            padding-left: 10px;
+            background: $deepBlue;
+            color:$gold;
+        }
     }
     & input:focus{
-        background-color: white;
         outline: none;
         box-shadow: none;
         border-color: inherit;

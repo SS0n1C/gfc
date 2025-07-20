@@ -49,8 +49,17 @@ onMounted(async() =>{
 <template>
   <section class="login flex justify-center items-center flex-col">
         <div class="formSection flex  items-center flex-col bg-[#243c5a]">
-            <div class="forSection--h mb-[50px] mt-[20px] text-[24px] font-mono font-bold">
-                LOGIN
+            <div class="formSection--logo">
+                <div><Icon name="fluent:brain-circuit-20-filled" style="color: #FACC15" size="40px" /></div>
+                <div><Icon name="pepicons-print:question" style="color:#FACC15" size="20px" /></div>
+                <div><Icon name="meteocons:lightning-bolt-fill" style="color:#FACC15" size="22px" /></div>
+                <div></div>
+            </div>
+            <div class="formSection--h">
+                <h3>Welcome</h3>
+            </div>
+            <div class="formSection--h">
+                <h2>Please sign</h2>
             </div>
             <div class="formSection--input">
                 <Icon name="uiw:mail" style="color: #FACC15" />
@@ -64,8 +73,8 @@ onMounted(async() =>{
                 placeholder="Password"
                 v-model="userPassword">
             </div>
-            <div class="formSection--button w-[140px] h-[40px] mt-4 bg-pink-500">
-                <button @click="login">enter</button>
+            <div class="formSection--button h-[40px] ">
+                <button @click="login">login</button>
             </div>
         </div>
     </section>
@@ -79,7 +88,6 @@ onMounted(async() =>{
     align-items: center;
     background: $deepBlue;
     border-radius: 10px;
-
 }
 .formSection{
     position: relative;
@@ -88,7 +96,7 @@ onMounted(async() =>{
     height: 400px; 
     border-radius: 20px;
     background: linear-gradient(135deg, #2b2c4d 0%, #0F1021 100%);
-    border:2px rgba(20, 20, 209, 0.63) solid;
+    border:2px rgba(39, 39, 150, 0.395) solid;
 
     &::after{
         content: "";
@@ -101,33 +109,82 @@ onMounted(async() =>{
         border: 1px solid $gold; 
         pointer-events: none;
     }
+    &--logo{
+        position:relative;
+        margin-top: 30px;
+        width: 60px;
+        height: 50px;
 
+        & > div:nth-of-type(1){
+            position: absolute;
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%)
+        } 
+        & > div:nth-of-type(2){
+            position:absolute;
+            left:0px;
+            top:5px;    
+            transform: rotate(-20deg);
+        }
+        &> div:nth-of-type(3){
+            position:absolute;
+            right:0px;
+            bottom:2px;    
+            transform: rotate(15deg);   
+        }
+        &> div:nth-of-type(4){
+            position:absolute;
+            left:10px;
+            bottom:10px;  
+            width:5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: $gold;     
+        }
+    }
+    &--h{
+        margin-top:20px;
+        
+        & h2{
+            @include font($playFair,300,16px,20px,$gold);
+            letter-spacing: 1.5px;
+            margin-bottom: 5px;
+        }
+        & h3{
+            @include font($serif,600,24px,30px,$gold);
+            letter-spacing: 2px;
+            text-shadow: 0 0 4px #ffffff76, 0 0 55px #0c1edd;
+        }
+    }
     &--input{
         border-radius: 20px;
         padding: 7px 12px;
         border: 1px $gold solid;
         background: $deepBlue;
+        margin:10px;
 
         & input{
             padding-left: 10px;
             background: $deepBlue;
             color:$gold;
-        }
-    }
-    & input:focus{
-        outline: none;
-        box-shadow: none;
-        border-color: inherit;
-    }
-    &--input{
-        margin:10px;
+        } 
     }
     &--button{
         border-radius: 10px;
-    }
-    & button{
-        width: 100%;
-        height: 100%;
+        margin:10px;
+        padding: 7px 12px;
+        width:80%;
+        background: $lighBlue;
+        border:1px white solid;
+        @include font($playFair,800,16px,20px,$gold);
+        
+        & button{
+            width:100%;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 5px black;
+        }
     }
 }
 </style>

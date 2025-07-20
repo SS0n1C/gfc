@@ -1,5 +1,4 @@
 @use "null.scss";
-@use "variable.scss";
-@use "mixin.scss";
+@use "mixin.scss" as *;
 @use "style.scss";
-
+@use "variables.scss" as *;

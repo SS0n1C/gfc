@@ -13,7 +13,7 @@
 </script>
 
 <template>
-<div class="cardSection flex justify-around items-center bg-[white] min-h-screen rounded-t-[20px]">
+<div class="cardSection flex justify-around grow items-center rounded-t-[20px]">
   <div class="card flex  items-center flex-col"  
     v-for="card in CARD_DATA"
     :key="card.name">
@@ -28,17 +28,51 @@
 </template>
 
 <style lang="scss" scoped>
+.cardSection{
+  background: linear-gradient(135deg, #2b2c4d 0%, #0F1021 100%);
+  position:relative;
+  border:1px rgba(0, 0, 255, 0.341) solid;
+
+  &::after{
+    content:"";
+    position: absolute;
+    border:1px $gold solid;
+    top:7px;
+    left:7px;
+    right: 7px;
+    bottom:7px;
+    border-radius: 20px;
+    pointer-events: none;
+  }
+}
 .card{
-  background-color: red;
+  background:$lighBlue;
   min-height: 250px;
   min-width: 25%;
   border-radius: 10px;
   padding: 15px 0;
+  position:relative;
+  border:1px rgba(0, 0, 255, 0.341) solid;
+
+
+    &::after{
+    content:"";
+    position: absolute;
+    border:1px $gold solid;
+    top:3px;
+    left:3px;
+    right: 3px;
+    bottom:3px;
+    border-radius: 10px;
+    pointer-events: none;
+  }
 
   &__title{
     padding-top:10px;
-    @include font($RobotoSlab,500,18px,20px,black);
+    @include font($playFair,700,18px,20px,$gold);
     text-transform:uppercase;
+    letter-spacing: 2px;
+   text-shadow: 2px 2px 3px $brown;
   }
 
   &__question{
@@ -48,16 +82,22 @@
     row-gap: 5px;
 
     .itemAlreadyUse{
-      background-color: darkgrey;
+      background:$lighBlue;
       pointer-events: none; 
+      border:1px $gold solid;
+      box-shadow:none;
+      filter: blur(0.7px);
     }
     &--item{
-      background-color: white;
+      background: $gold;
       width:100%;
       height: 30px;
       @include flex;
       border-radius: 5px;
-      @include font($Lucky,200,13px,16px,black);
+      @include font($RobotoSlab,500,15px,16px,black);
+       text-shadow: 1px 1px 2px $brown;
+      border:1px rgba(0, 0, 255, 0.341)  solid;
+      box-shadow: 5px 5px 7px 3px rgba(0,0,0,0.72);
 
       & a{
         @include flex;
@@ -65,7 +105,7 @@
       }
 
       &:hover{
-        background-color: green;
+        background:wheat;
       }
     }
   }

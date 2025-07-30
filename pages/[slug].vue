@@ -53,7 +53,7 @@ onMounted(async()=>{
 </script>
 <template>
 <NuxtLayout>
-  <section class="flex justify-around bg-[white] min-h-screen rounded-t-[20px] p-8">
+  <section class="flex justify-around grow bg-[white] rounded-t-[20px] p-8">
   <div class="min-w-full flex flex-col">
     <div class="flex justify-around">
       <div>{{ item.name }}</div>

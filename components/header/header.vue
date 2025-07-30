@@ -36,7 +36,7 @@ function goToRevard(){
 
 </script>
 <template>
-<header class="header justify-between items-center flex bg-[#243c5a]">
+<header class="header">
     <div>
     <div class="revard items-center flex bg-[white] rounded-2xl p-1" @click="goToRevard()">
         <Icon v-if="routed.path == '/reward'" name="fluent-color:question-circle-32" size="28px" />
@@ -44,19 +44,20 @@ function goToRevard(){
     </div>
     </div>
     <div class="items-center flex mr-[10px]">
-        <div class="score pr-[20px]">{{ userInfo.user.score }}</div>
+        <div class="wrapper"></div>
+        <div class="score pr-[20px]"><Icon name="el:star-alt" style="color:#FACC15" size="20px"/> <span>{{ userInfo.user.score }}</span></div>
         <div class="avatar"><NuxtImg
             src="/ava.png"
             alt="avatar"
-            width="35px"
-            height="30px"/>
+            width="33px"
+            height="33px"/>
     </div>
     <div class="login">
         <div class="login__name">
             {{ userInfo.user.name }}
         </div>
-        <div class="login__logout pl-[5px]" @click=logout()>
-            <Icon name="uil:exit" style="color: white" size="16px" />
+        <div class="login__logout pl-[5px] pt-[7px]" @click=logout()>
+            <Icon name="uil:exit" style="color: #FACC15" size="20px" />
         </div>
     </div>
     </div>
@@ -64,16 +65,43 @@ function goToRevard(){
 </header>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .header{
+    margin-bottom: 5px;
+    position: relative;
     padding:20px 10px;
-    @include font($Lucky,500,20px,20px,white);
-    
+    @include font($playFair,500,20px,30px,$gold);
+    @include flex;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #2b2c4d 0%, #0F1021 100%);
+    border-radius: 20px;
+    border:2px rgba(39, 39, 150, 0.395) solid;
+    text-transform: uppercase;
+
+    &::after{
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 5px;
+        right: 5px;
+        bottom: 4px;
+        border-radius: 20px;
+        border: 1px solid $gold; 
+        pointer-events: none;
+    }
+}
+.wrapper{
+    margin-right: 15px;
+    width:1px;
+    height: 40px;
+    border-radius:5px;
+    background: $lighBlue;
 }
 .revard{
     margin-left:10px;
-    border:1.5px gold solid;
+    border:0.5px gold solid;
     cursor:pointer;
+    background: $lighBlue;
 }
 .login{
     @include flex;
@@ -82,9 +110,9 @@ function goToRevard(){
     }
 }
 .avatar{
-    background-color: white;
-    border-radius: 50%;
-    padding: 1px;
+    background: $lighBlue;
+    border-radius: 20px;
+    padding: 2px 3px 3px 3px;
     margin-right: 5px;
 }
 </style>

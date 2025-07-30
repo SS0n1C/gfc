@@ -86,7 +86,6 @@ onMounted(async() =>{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: $deepBlue;
     border-radius: 10px;
 }
 .formSection{

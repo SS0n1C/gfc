@@ -3,10 +3,10 @@
 
 <template>
   <div class="wrapper">
-    <div class="bg-[#243c5a] min-h-screen">
-      <div class="conteiner">
+    <div>
+      <div class="conteiner flex flex-col min-h-screen pt-[5px]">
       <Header/>
-      <slot/>
+      <slot class="grow"/>
       </div>
     </div>
 </div>
@@ -14,6 +14,9 @@
 <style lang="scss">
 .conteiner{
   @include conteiner(1200px);
+}
+.wrapper{
+  background: $deepBlue;
 }
 
 </style>

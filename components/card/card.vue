@@ -29,9 +29,9 @@
 
 <style lang="scss" scoped>
 .cardSection{
-  background: linear-gradient(135deg, #2b2c4d 0%, #0F1021 100%);
+  background: $backBLue;
   position:relative;
-  border:1px rgba(0, 0, 255, 0.341) solid;
+  border:2px rgba(39, 39, 150, 0.395) solid;
 
   &::after{
     content:"";
@@ -89,15 +89,17 @@
       filter: blur(0.7px);
     }
     &--item{
-      background: $gold;
+      background: $slickGold;
       width:100%;
       height: 30px;
       @include flex;
       border-radius: 5px;
       @include font($RobotoSlab,500,15px,16px,black);
-       text-shadow: 1px 1px 2px $brown;
+      text-shadow: 1px 1px 2px $brown;
       border:1px rgba(0, 0, 255, 0.341)  solid;
       box-shadow: 5px 5px 7px 3px rgba(0,0,0,0.72);
+      background-blend-mode: overlay;
+      filter:brightness(1.1) contrast(1.2);
 
       & a{
         @include flex;

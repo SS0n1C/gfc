@@ -12,9 +12,9 @@ import { ref, onMounted, defineExpose } from 'vue'
 
 const props = defineProps({
   width: { type: Number, default: 300 },
-  height: { type: Number, default: 150 },
+  height: { type: Number, default: 120 },
   brush: { type: Number, default: 25 },
-  threshold: { type: Number, default: 50 }, // %
+  threshold: { type: Number, default: 50 },
 })
 
 const emit = defineEmits(['completed'])
@@ -58,8 +58,12 @@ defineExpose({ revealAll })
 
 onMounted(() => {
   ctx = canvas.value.getContext('2d', { willReadFrequently: true })
-  ctx.fillStyle = 'black'
-  ctx.fillRect(0, 0, props.width, props.height)
+  const image = new Image()
+  image.src = '/scratchCard.jpg' 
+
+image.onload = () => {
+  ctx.drawImage(image, 0, 0, props.width, props.height)
+}
 
   const c = canvas.value
   c.addEventListener('mousedown', () => (drawing = true))
@@ -73,8 +77,19 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .scratch-wrapper {
+  text-shadow: 2px 2px 3px $brown;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   position: relative;
   display: inline-block;
+  background:linear-gradient(180deg,#aaa,#666);
+  background-blend-mode: overlay;
+  filter:brightness(1.1) contrast(1.2);
+  border-radius:12px;
+  @include font($playFair,400,18px,20px,$gold);
+  border:1.5px rgba(39, 39, 150, 0.395) solid;
+  box-shadow: 10px 10px 10px black;
+  text-shadow: #666;
 }
 canvas {
   position: absolute;
@@ -82,7 +97,7 @@ canvas {
   left: 0;
   z-index: 2;
   touch-action: none;
-  border-radius:20px;
+  border-radius:12px;
   
 
 }

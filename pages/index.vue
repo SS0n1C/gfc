@@ -5,6 +5,7 @@ const router = useRouter()
 const useQuizData = getQuizData() 
 
 onMounted(async()=>{
+  useLoader.set(true)
   await getAllQuestion(useQuizData)
   try {
     const user = await account.get()

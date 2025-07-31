@@ -44,7 +44,6 @@ function reveal() {
 onMounted(async()=>{
   try {
     if(response){
-      store.set(response)
     }
   } catch (error) {
     router.push("/login")
@@ -53,14 +52,15 @@ onMounted(async()=>{
 </script>
 <template>
 <NuxtLayout>
-  <section class="flex justify-around grow bg-[white] rounded-t-[20px] p-8">
-  <div class="min-w-full flex flex-col">
-    <div class="flex justify-around">
+  <section class="flex justify-around grow rounded-t-[20px] p-8">
+  <div class="min-w-full flex flex-col gap-y-[15px]">
+    <div class="questOption flex justify-around">
       <div>{{ item.name }}</div>
       <div>{{ itemText.price }}</div>
     </div>
-    <div class="flex justify-center items-center grow">
-      <div>{{ itemText.quest }}</div>
+    <div class="questText flex justify-center items-center grow">
+      <!-- <div>{{ itemText.quest }}</div> -->
+       <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, accusantium aliquid voluptatem labore cupiditate reiciendis dolores consectetur. Reprehenderit sunt nisi tenetur. Explicabo quas ipsa similique eveniet id, quo distinctio quibusdam.</div>
     </div>
     <div class="flex justify-center items-center grow">
       <uiScratch 
@@ -69,12 +69,12 @@ onMounted(async()=>{
           :height="60" 
           :threshold="80" 
           @completed="reveal">
-      <div class="flex justify-center items-center grow">lorem</div>
+      <div class="flex justify-center items-center grow text-center">Lorem ipsum dolor sit.</div>
     </uiScratch>
     </div>
     <div class="flex justify-center items-center">
-      <button type="button" class="btn" @click="right()">Yes</button>
-      <button type="button" class="btn" @click="wrong()">No</button>
+      <button type="button" class="btn" @click="right()"><Icon class="btnIcon" name="icon-park-solid:correct" style="color:green" size="20px"/>Yes</button>
+      <button type="button" class="btn" @click="wrong()"><Icon class="btnIcon" name="icomoon-free:cross" style="color:red" size="20px"/>No</button>
     </div>
   </div>
 </section>
@@ -83,15 +83,75 @@ onMounted(async()=>{
 
 
 <style lang="scss" scoped>
+section{
+    position:relative;
+    background:$backBLue;
+    border:2px rgba(39, 39, 150, 0.395) solid;
+        &::after{
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 5px;
+        right: 5px;
+        bottom: 4px;
+        border-radius: 20px;
+        border: 1px solid $gold; 
+        pointer-events: none;
+    }
+}
+.questOption{
+  @include font($playFair,500,24px,28px,$gold);
+
+  &>div{
+    border-bottom:1px $gold solid;
+  }
+}
+.questText{
+  padding: 10px 15px;
+  align-self: center;
+  @include font($playFair,700,20px,28px,$gold);
+  letter-spacing: 1px;
+  text-align: center;
+  background: $lighBlue;
+  width: 85%;
+  border-radius: 10px;
+  border:2px rgba(39, 39, 150, 0.395) solid;
+  position:relative;
+        &::after{
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 3px;
+        right: 3px;
+        bottom: 2px;
+        border-radius: 10px;
+        border: 1px solid $gold; 
+        pointer-events: none;
+    }
+} 
 .btn{
+  background-blend-mode: overlay;
+  filter:brightness(1.1) contrast(1.2);
+  position:relative;
+  text-shadow: 2px 2px 3px $brown;
+  border:2px rgba(39, 39, 150, 0.395) solid;
   padding: 10px 20px;
-  border:1px black solid;
-  border-radius: 5px;
-  background-color: green;
+  background: $slickGold;
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  color: #1a1a1a;
+  @include font($playFair,400,16px,16px,black);
 
   &:last-of-type{
-    background-color: red;
+    border:1px $gold solid;
+    background:$lighBlue;
     margin-left: 30px;
+    box-shadow: 0 4px 10px rgba(0, 42, 255, 0.3);
   }
+}
+.btnIcon{
+  position:absolute;
+  top: -7px;
+  left: -5px;
 }
 </style>

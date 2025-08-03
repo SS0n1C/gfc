@@ -13,8 +13,8 @@
 </script>
 
 <template>
-<div class="cardSection flex justify-around grow items-center rounded-t-[20px]">
-  <div class="card flex  items-center flex-col"  
+<div class="cardSection flex flex-wrap pt-[50px] p-[20px] gap-[15px] justify-around items-center rounded-t-[20px]">
+  <div class="card flex grow items-center flex-col"  
     v-for="card in CARD_DATA"
     :key="card.name">
     <div class="card__title">{{ card.name }}</div>
@@ -47,12 +47,17 @@
 }
 .card{
   background:$lighBlue;
-  min-height: 250px;
-  min-width: 25%;
+  // min-height: 250px;
+  width: min(47%, 200px);
+  max-width: 300px;
   border-radius: 10px;
   padding: 15px 0;
   position:relative;
   border:1px rgba(0, 0, 255, 0.341) solid;
+
+  @include media($mobile){
+    padding: 10px;
+  }
 
 
     &::after{
@@ -72,7 +77,15 @@
     @include font($playFair,700,18px,20px,$gold);
     text-transform:uppercase;
     letter-spacing: 2px;
-   text-shadow: 2px 2px 3px $brown;
+    text-shadow: 2px 2px 3px $brown;
+    max-width: 100%;
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+   @include media($mobile){
+    font-size: 15px;
+   }
   }
 
   &__question{

@@ -39,8 +39,8 @@ function goToRevard(){
 <header class="header">
     <div>
     <div class="revard items-center flex bg-[white] rounded-2xl p-1" @click="goToRevard()">
-        <Icon v-if="routed.path == '/reward'" name="fluent-color:question-circle-32" size="28px" />
-        <Icon v-else name="noto:trophy" size="28px" />
+        <Icon v-if="routed.path == '/reward'" name="fluent-color:question-circle-32" class="rewardIcon" size="28px" />
+        <Icon v-else name="noto:trophy" class="rewardIcon" size="28px" />
     </div>
     </div>
     <div class="items-center flex mr-[10px]">
@@ -77,6 +77,11 @@ function goToRevard(){
     border-radius: 20px;
     border:2px rgba(39, 39, 150, 0.395) solid;
     text-transform: uppercase;
+    
+    @include media($mobile){
+        padding: 10px;
+        font-size: 18px;
+    }
 
     &::after{
         content: "";
@@ -102,6 +107,12 @@ function goToRevard(){
     border:0.5px gold solid;
     cursor:pointer;
     background: $lighBlue;
+    .rewardIcon{
+        @include media($mobile){
+        height: 24px;
+        width:24px;
+    }
+    } 
 }
 .login{
     @include flex;

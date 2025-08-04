@@ -38,8 +38,8 @@ async function buyReward(rewardScore,rewardID){
         <div>
             <h2>choose your reward</h2>
         </div>
-        <div class="rewardField flex  justify-around items-center gap-x-[20px] min-w-full ">
-            <div class="rewardCard" v-for="rewardItem in getRewardList"
+        <div class="rewardField flex flex-wrap  justify-around items-stretch gap-[20px] min-w-full ">
+            <div class="rewardCard grow" v-for="rewardItem in getRewardList"
             :key="rewardItem.$id">
                 <div class="rewardCard__title">{{rewardItem.name}}</div>
                 <div class="rewardCard__img"><NuxtImg
@@ -48,7 +48,7 @@ async function buyReward(rewardScore,rewardID){
                     width="150px"
                     height="150px"/>
                 </div>
-                <div class="rewardCard__discript">{{ rewardItem.discript }}</div>
+                <div class="rewardCard__discript grow">{{ rewardItem.discript }}</div>
                 <div class="rewardCard__price" v-if="!useUserData.rewardID.find(e=>e == rewardItem.$id )" @click="buyReward(rewardItem.price,rewardItem.$id)"><button type="button">{{rewardItem.price}}</button></div>
                 <div class="rewardCard__buyed" v-else>already have</div>
             </div>
@@ -78,25 +78,33 @@ async function buyReward(rewardScore,rewardID){
     @include font($playFair,700,28px,32px,$gold);
     letter-spacing: 2px;
     text-transform: capitalize;
+    text-align: center;
+
+    @include media($mobile){
+        @include fontsize(20px,24px);
+    }
   }
 }
 .rewardCard{
     @include flex;
-    @include font($playFair,500,24px,28px,$gold);
+    @include font($playFair,500,20px,28px,$gold);
     flex-direction: column;
     border: 2px $gold solid;
     padding: 10px 20px;
     border-radius: 10px;
-    row-gap: 15px;
-    font-size: 20px;
-
+    row-gap:20px;
+    width:48%;
+    max-width: 270px;
     &:nth-of-type(odd){
         border: 2px $blue solid;
     }
+    @include media($mobile){
+        padding:10px 10px;
+        @include fontsize(15px,17px);
+    }
 
     &__price{
-        width: 100%;
-        height: 100%;
+        width: 70%;
         button{
             border:1px $gold solid;
             font-family: $serif;
@@ -120,12 +128,15 @@ async function buyReward(rewardScore,rewardID){
                 border-radius: 10px;
                 pointer-events: none;
             }
+            @include media($mobile){
+                font-size:15px;
+            }
         }
     }
     &__buyed{
         text-shadow: 3px 3px 3px $brown;
         padding:5px 10px;
-        min-width:100%;
+        width:70%;
         background:$lighBlue;
         border-radius: 10px;
         text-align:center;
@@ -133,6 +144,11 @@ async function buyReward(rewardScore,rewardID){
         box-shadow: 2px 2px 2px $gold;
         text-transform: uppercase;
         font-size: 16px;
+
+        @include media($mobile){
+            padding: 5px;
+            font-size:14px;
+        }
     }
 }
 </style>

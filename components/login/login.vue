@@ -47,7 +47,7 @@ onMounted(async() =>{
 </script>
 
 <template>
-  <section class="login flex justify-center items-center flex-col">
+  <section class="login flex  items-center flex-col">
         <div class="formSection flex  items-center flex-col bg-[#243c5a]">
             <div class="formSection--logo">
                 <div><Icon name="fluent:brain-circuit-20-filled" style="color: #FACC15" size="40px" /></div>
@@ -82,7 +82,7 @@ onMounted(async() =>{
 
 <style lang="scss" scoped>
 .login{
-    min-height: 100vh;
+    margin-top:50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,7 +96,9 @@ onMounted(async() =>{
     border-radius: 20px;
     background: linear-gradient(135deg, #2b2c4d 0%, #0F1021 100%);
     border:2px rgba(39, 39, 150, 0.395) solid;
-
+    @include media($mobile){
+        height: 370px;
+    }
     &::after{
         content: "";
         position: absolute;
@@ -162,23 +164,28 @@ onMounted(async() =>{
         border: 1px $gold solid;
         background: $deepBlue;
         margin:10px;
-
+        width:80%;
         & input{
             padding-left: 10px;
             background: $deepBlue;
             color:$gold;
+            width:80%;
         } 
     }
     &--button{
         border-radius: 10px;
         margin:10px;
         padding: 7px 12px;
-        width:80%;
+        width:70%;
         background: $lighBlue;
         border:1px white solid;
+        @include flex;
         @include font($playFair,800,16px,20px,$gold);
-        
+        @include media($mobile){
+            padding:5px 7px;
+        }
         & button{
+            display: flexbox;
             width:100%;
             text-transform: uppercase;
             letter-spacing: 2px;

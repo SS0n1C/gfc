@@ -45,7 +45,7 @@ function goToRevard(){
     </div>
     <div class="items-center flex mr-[10px]">
         <div class="wrapper"></div>
-        <div class="score pr-[20px]"><Icon name="el:star-alt" style="color:#FACC15" size="20px"/> <span>{{ userInfo.user.score }}</span></div>
+        <div class="score pr-[20px]"><Icon name="el:star-alt" style="color:#FACC15" class="score__icon" size="20px"/> <span>{{ userInfo.user.score }}</span></div>
         <div class="avatar"><NuxtImg
             src="/ava.png"
             alt="avatar"
@@ -57,7 +57,7 @@ function goToRevard(){
             {{ userInfo.user.name }}
         </div>
         <div class="login__logout pl-[5px] pt-[7px]" @click=logout()>
-            <Icon name="uil:exit" style="color: #FACC15" size="20px" />
+            <Icon name="uil:exit" style="color: #FACC15" class="login__logout--icon"  size="20px" />
         </div>
     </div>
     </div>
@@ -114,10 +114,33 @@ function goToRevard(){
     }
     } 
 }
+.score{
+    @include media($mobile){
+        padding-right: 10px;
+        font-size:16px;
+    }
+    &__icon{
+        @include media($mobile){
+            width:15px;
+            height: 15px;
+        }
+    }
+}
 .login{
     @include flex;
     &__logout{
          cursor:pointer;
+        &--icon{
+            @include media($mobile){
+            width:17px;
+            height: 17px;
+         }
+        }
+
+    }
+    @include media($mobile){
+        font-size:15px;
+
     }
 }
 .avatar{
@@ -125,5 +148,9 @@ function goToRevard(){
     border-radius: 20px;
     padding: 2px 3px 3px 3px;
     margin-right: 5px;
+    @include media($mobile){
+        height: 30px;
+        width: 30px;
+    }
 }
 </style>

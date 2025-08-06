@@ -4,6 +4,7 @@ const useUserData = await  getUserData(user)
 const router = useRouter()
 const store = useAutStore()
 const getRewardList = await allReward()
+let changeVisualNet = ref(true)
 onMounted(async()=>{
   try {
     if(user){
@@ -30,6 +31,10 @@ async function buyReward(rewardScore,rewardID){
     }
 
 }
+function changeVisual(){
+    changeVisualNet.value = !changeVisualNet.value
+}
+watchEffect(changeVisualNet)
 
 </script>
 
@@ -37,6 +42,10 @@ async function buyReward(rewardScore,rewardID){
     <div class="flex rewardSection p-8 gap-y-[20px] flex-col items-center min-h-screen rounded-t-[20px]">
         <div>
             <h2>choose your reward</h2>
+        </div>
+        <div class="flex w-full justify-end pr-[10px]">
+            <Icon v-if="changeVisualNet" name="fluent:slide-link-20-regular" style="color:#999999" size="25px" @click="changeVisual()"/>
+            <Icon v-else name="fluent:slide-text-20-filled" style="color:#999999" size="25px" @click="changeVisual()"/>
         </div>
         <div class="rewardField flex flex-wrap  justify-around items-stretch gap-[20px] min-w-full ">
             <div class="rewardCard grow" v-for="rewardItem in getRewardList"

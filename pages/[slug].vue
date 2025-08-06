@@ -58,9 +58,8 @@ onMounted(async()=>{
       <div>{{ item.name }}</div>
       <div>{{ itemText.price }}</div>
     </div>
-    <div class="questText flex justify-center items-center grow">
-      <!-- <div>{{ itemText.quest }}</div> -->
-       <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, accusantium aliquid voluptatem labore cupiditate reiciendis dolores consectetur. Reprehenderit sunt nisi tenetur. Explicabo quas ipsa similique eveniet id, quo distinctio quibusdam.</div>
+    <div class="questText min-w-[200px] flex justify-center items-center grow">
+      <div>{{ itemText.quest }}</div>
     </div>
     <div class="flex justify-center items-center grow">
       <uiScratch 
@@ -69,7 +68,7 @@ onMounted(async()=>{
           :height="60" 
           :threshold="80" 
           @completed="reveal">
-      <div class="flex justify-center items-center grow text-center">Lorem ipsum dolor sit.</div>
+      <div class="flex justify-center items-center grow text-center">{{itemText.answer}}</div>
     </uiScratch>
     </div>
     <div class="flex justify-center items-center">
@@ -128,6 +127,9 @@ section{
         border: 1px solid $gold; 
         pointer-events: none;
     }
+  @include media($mobile){
+    @include fontsize(16px,18px)
+  }
 } 
 .btn{
   background-blend-mode: overlay;
@@ -153,5 +155,10 @@ section{
   position:absolute;
   top: -7px;
   left: -5px;
+}
+.cratchCard{
+  @include media($mobile){
+    width:100px;
+  }
 }
 </style>

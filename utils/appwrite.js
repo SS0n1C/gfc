@@ -54,7 +54,8 @@ export async function getAllQuestion(stateQuData) {
           id: data.$id,
           category: data.category,
           price: data.price,
-          quest: data.quest
+          quest: data.quest,
+          answer:data.answer,
   }))
   stateQuData.set(getQData)
 }

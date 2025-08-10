@@ -1,4 +1,8 @@
 <script setup>
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { EffectCards } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/effect-cards'
 const user = await account.get()
 const useUserData = await  getUserData(user)
 const router = useRouter()
@@ -47,7 +51,7 @@ watchEffect(changeVisualNet)
             <Icon v-if="changeVisualNet" name="fluent:slide-link-20-regular" style="color:#999999" size="25px" @click="changeVisual()"/>
             <Icon v-else name="fluent:slide-text-20-filled" style="color:#999999" size="25px" @click="changeVisual()"/>
         </div>
-        <div class="rewardField flex flex-wrap  justify-around items-stretch gap-[20px] min-w-full ">
+        <div v-if="changeVisualNet" class="rewardField flex flex-wrap  justify-around items-stretch gap-[20px] min-w-full ">
             <div class="rewardCard grow" v-for="rewardItem in getRewardList"
             :key="rewardItem.$id">
                 <div class="rewardCard__title">{{rewardItem.name}}</div>
@@ -62,6 +66,28 @@ watchEffect(changeVisualNet)
                 <div class="rewardCard__buyed" v-else>already have</div>
             </div>
         </div>
+  <Swiper
+    effect="cards"
+    grab-cursor
+    :modules="[EffectCards]"
+    class="mySwiper items-stretch"
+    v-else
+  >
+    <SwiperSlide  v-for="rewardItem in getRewardList"
+            :key="rewardItem.$id"
+            class="rewardCard grow">
+                      <div class="rewardCard__title">{{rewardItem.name}}</div>
+                <div class="rewardCard__img"><NuxtImg
+                    src="/lorem.png"
+                    alt="your reward"
+                    width="150px"
+                    height="150px"/>
+                </div>
+                <div class="rewardCard__discript grow">{{ rewardItem.discript }}</div>
+                <div class="rewardCard__price" v-if="!useUserData.rewardID.find(e=>e == rewardItem.$id )" @click="buyReward(rewardItem.price,rewardItem.$id)"><button type="button">{{rewardItem.price}}</button></div>
+                <div class="rewardCard__buyed" v-else>already have</div>
+    </SwiperSlide>
+  </Swiper>z
     </div>
 </template>
 
@@ -160,4 +186,70 @@ watchEffect(changeVisualNet)
         }
     }
 }
+.swiper {
+    width: 300px;
+      @include font($playFair,500,20px,28px,$gold);
+
+  @include media($mobile){
+    width:75%;
+    min-height: 100%;
+    @include fontsize(15px, 18px);
+  }
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction:column;
+  border-radius: 18px;
+  @include font($playFair,500,20px,28px,$gold);
+  min-height: 400px;
+  background: $backBLue;
+  text-align:center;
+
+  @include media($mobile){
+    @include fontsize(15px,18px);
+  }
+}
+
+// .swiper-slide:nth-child(1n) {
+//   background-color: rgb(206, 17, 17);
+// }
+
+// .swiper-slide:nth-child(2n) {
+//   background-color: rgb(0, 140, 255);
+// }
+
+// .swiper-slide:nth-child(3n) {
+//   background-color: rgb(10, 184, 111);
+// }
+
+// .swiper-slide:nth-child(4n) {
+//   background-color: rgb(211, 122, 7);
+// }
+
+// .swiper-slide:nth-child(5n) {
+//   background-color: rgb(118, 163, 12);
+// }
+
+// .swiper-slide:nth-child(6n) {
+//   background-color: rgb(180, 10, 47);
+// }
+
+// .swiper-slide:nth-child(7n) {
+//   background-color: rgb(35, 99, 19);
+// }
+
+// .swiper-slide:nth-child(8n) {
+//   background-color: rgb(0, 68, 255);
+// }
+
+// .swiper-slide:nth-child(9n) {
+//   background-color: rgb(218, 12, 218);
+// }
+
+// .swiper-slide:nth-child(10n) {
+//   background-color: rgb(54, 94, 77);
+// }
 </style>

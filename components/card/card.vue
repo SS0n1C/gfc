@@ -10,6 +10,17 @@
         questItem.alreadyUse = useUserData.questID.includes(questItem.id)
       })
     })
+    function goToQuest(link){
+      let userLive = useUserData.live
+      if(userLive >=1){
+        let conf = confirm("Ти впевненна?")
+        if(conf){
+          changeUserData(useUserData,undefined,undefined,undefined,String(userLive -1))
+          navigateTo(link)
+        }
+      } else {
+        alert("В тебе не вистачає спроб :(")
+      }}
 </script>
 
 <template>
@@ -21,7 +32,7 @@
     <div class="card__question flex  items-center justify-between flex-col min-h-full"
     v-for="question in card.quiz"
     :key="question.slug">
-      <div class="card__question--item" :class="{'itemAlreadyUse': question.alreadyUse}"><NuxtLink :to="question.link">{{ question.price }}</NuxtLink></div>
+      <div class="card__question--item" @click="goToQuest(question.link)" :class="{'itemAlreadyUse': question.alreadyUse}">{{ question.price }}</div>
     </div>
   </div>
 </div>
@@ -113,6 +124,7 @@
       box-shadow: 5px 5px 7px 3px rgba(0,0,0,0.72);
       background-blend-mode: overlay;
       filter:brightness(1.1) contrast(1.2);
+      cursor: pointer;
 
       & a{
         @include flex;

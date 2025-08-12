@@ -51,6 +51,7 @@ watchEffect(changeVisualNet)
             <Icon v-if="changeVisualNet" name="fluent:slide-link-20-regular" style="color:#999999" size="25px" @click="changeVisual()"/>
             <Icon v-else name="fluent:slide-text-20-filled" style="color:#999999" size="25px" @click="changeVisual()"/>
         </div>
+        <transition name="fade-slide" mode="out-in">
         <div v-if="changeVisualNet" class="rewardField flex flex-wrap  justify-around items-stretch gap-[20px] min-w-full ">
             <div class="rewardCard grow" v-for="rewardItem in getRewardList"
             :key="rewardItem.$id">
@@ -87,7 +88,8 @@ watchEffect(changeVisualNet)
                 <div class="rewardCard__price" v-if="!useUserData.rewardID.find(e=>e == rewardItem.$id )" @click="buyReward(rewardItem.price,rewardItem.$id)"><button type="button">{{rewardItem.price}}</button></div>
                 <div class="rewardCard__buyed" v-else>already have</div>
     </SwiperSlide>
-  </Swiper>z
+  </Swiper>
+  </transition>
     </div>
 </template>
 
@@ -120,7 +122,11 @@ watchEffect(changeVisualNet)
     }
   }
 }
+.rewardField{
+  transition: all 0.4s ease;
+}
 .rewardCard{
+
     @include flex;
     @include font($playFair,500,20px,28px,$gold);
     flex-direction: column;
@@ -212,44 +218,28 @@ watchEffect(changeVisualNet)
     @include fontsize(15px,18px);
   }
 }
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: all 0.4s ease;
+}
 
-// .swiper-slide:nth-child(1n) {
-//   background-color: rgb(206, 17, 17);
-// }
+.fade-slide-enter-from {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+}
 
-// .swiper-slide:nth-child(2n) {
-//   background-color: rgb(0, 140, 255);
-// }
+.fade-slide-enter-to {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
 
-// .swiper-slide:nth-child(3n) {
-//   background-color: rgb(10, 184, 111);
-// }
+.fade-slide-leave-from {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
 
-// .swiper-slide:nth-child(4n) {
-//   background-color: rgb(211, 122, 7);
-// }
-
-// .swiper-slide:nth-child(5n) {
-//   background-color: rgb(118, 163, 12);
-// }
-
-// .swiper-slide:nth-child(6n) {
-//   background-color: rgb(180, 10, 47);
-// }
-
-// .swiper-slide:nth-child(7n) {
-//   background-color: rgb(35, 99, 19);
-// }
-
-// .swiper-slide:nth-child(8n) {
-//   background-color: rgb(0, 68, 255);
-// }
-
-// .swiper-slide:nth-child(9n) {
-//   background-color: rgb(218, 12, 218);
-// }
-
-// .swiper-slide:nth-child(10n) {
-//   background-color: rgb(54, 94, 77);
-// }
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.95);
+}
 </style>

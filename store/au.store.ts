@@ -2,7 +2,8 @@ interface IautStore {
     email: string
     name: string
     score: number
-    status: boolean
+    status: boolean,
+    live:number,
 }
 const defaultUser: {user : IautStore} =  {
     user:{
@@ -10,6 +11,7 @@ const defaultUser: {user : IautStore} =  {
         name: "guest",
         score: 0,
         status: false,
+        live:0,
     }
 }
 export const useAutStore = defineStore("isAuth",{

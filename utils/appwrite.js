@@ -24,7 +24,7 @@ export async function getUserData(data) {
   const userScore = docs.documents[0];
   return userScore 
 }
-export async function changeUserData(userData,userQuestID,userDataScore,userRewardID){
+export async function changeUserData(userData,userQuestID,userDataScore,userRewardID,useLive){
   const docs = await DB.updateDocument(
   DB_ID,
   USER_COLLECTION,
@@ -33,6 +33,7 @@ export async function changeUserData(userData,userQuestID,userDataScore,userRewa
       questID: userQuestID,
       data: userDataScore,
       rewardID:userRewardID,
+      live:useLive,
     }
 )
 }
@@ -41,7 +42,7 @@ export async function createUserData(user) {
     DB_ID,
     USER_COLLECTION,
       ID.unique(),
-      {userID: user.$id, data:"2000",questID:0,rewardID:0}
+      {userID: user.$id, data:"0",questID:0,rewardID:0,live:"0"}
   )
   return createDoc
 }

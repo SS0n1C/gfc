@@ -19,7 +19,8 @@ onMounted(async() =>{
         const user = await account.get()
         const userScore = await getUserData(user)
         store.set({
-            score:userScore.data
+            score:userScore.data,
+            live:userScore.live
         })
     } catch (error) {
         console.log(error)
@@ -45,7 +46,10 @@ function goToRevard(){
     </div>
     <div class="items-center flex mr-[10px]">
         <div class="wrapper"></div>
-        <div class="score pr-[20px]"><Icon name="el:star-alt" style="color:#FACC15" class="score__icon" size="20px"/> <span>{{ userInfo.user.score }}</span></div>
+        <div class="score pr-[20px]">
+            <div class="score__field"><Icon name="subway:hurt-3" style="color:red" class="score__icon" size="16px"/> <span> {{ userInfo.user.live }}</span></div>
+             <div class="score__field"><Icon name="el:star-alt" style="color:#FACC15" class="score__icon" size="16px"/> <span> {{ userInfo.user.score }}</span></div>
+        </div>
         <div class="avatar"><NuxtImg
             src="/ava.png"
             alt="avatar"
@@ -115,15 +119,25 @@ function goToRevard(){
     } 
 }
 .score{
+    @include font($RobotoSlab,500,20px,20px,$gold);
+    @include flex;
+    column-gap:10px;
     @include media($mobile){
         padding-right: 10px;
-        font-size:16px;
+        @include fontsize(13px,13px);
+        flex-direction: column;
+        row-gap: 3px;
+        align-items: flex-start;
+        
     }
     &__icon{
         @include media($mobile){
-            width:15px;
-            height: 15px;
+            width:13px;
+            height: 13px;
         }
+    }
+    & span{
+        max-height: 16px;
     }
 }
 .login{

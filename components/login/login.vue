@@ -47,7 +47,7 @@ onMounted(async() =>{
 </script>
 
 <template>
-  <section class="login flex  items-center flex-col">
+  <section class="login flex grow  items-center flex-col">
         <div class="formSection flex  items-center flex-col bg-[#243c5a]">
             <div class="formSection--logo">
                 <div><Icon name="fluent:brain-circuit-20-filled" style="color: #FACC15" size="40px" /></div>

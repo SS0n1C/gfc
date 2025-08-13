@@ -20,7 +20,8 @@ onMounted(async() =>{
         const userScore = await getUserData(user)
         store.set({
             score:userScore.data,
-            live:userScore.live
+            live:userScore.live,
+            avatar:userScore.avatar,
         })
     } catch (error) {
         console.log(error)
@@ -50,7 +51,15 @@ function goToRevard(){
             <div class="score__field"><Icon name="subway:hurt-3" style="color:red" class="score__icon" size="16px"/> <span> {{ userInfo.user.live }}</span></div>
              <div class="score__field"><Icon name="el:star-alt" style="color:#FACC15" class="score__icon" size="16px"/> <span> {{ userInfo.user.score }}</span></div>
         </div>
-        <div class="avatar"><NuxtImg
+        <div class="avatar">
+            <NuxtImg 
+            v-if="userInfo.user.avatar"
+            :src="userInfo.user.avatar"
+            alt="avatar"
+            width="33px"
+            height="33px"/>
+            <NuxtImg 
+            v-else
             src="/ava.png"
             alt="avatar"
             width="33px"
@@ -158,10 +167,20 @@ function goToRevard(){
     }
 }
 .avatar{
-    background: $lighBlue;
+    background: white;
     border-radius: 20px;
     padding: 2px 3px 3px 3px;
     margin-right: 5px;
+    width:40px;
+    height:40px;
+    overflow: hidden;
+   border:1px rgba(39, 39, 150, 0.395) solid;
+    & img{
+        object-fit: cover;
+        width: 100%;
+        height:100%;
+        display: block;
+    }
     @include media($mobile){
         height: 30px;
         width: 30px;

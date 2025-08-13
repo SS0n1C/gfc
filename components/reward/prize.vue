@@ -53,11 +53,11 @@ watchEffect(changeVisualNet)
         </div>
         <transition name="fade-slide" mode="out-in">
         <div v-if="changeVisualNet" class="rewardField flex flex-wrap  justify-around items-stretch gap-[20px] min-w-full ">
-            <div class="rewardCard grow" v-for="rewardItem in getRewardList"
+            <div class="rewardCard" v-for="rewardItem in getRewardList"
             :key="rewardItem.$id">
                 <div class="rewardCard__title">{{rewardItem.name}}</div>
                 <div class="rewardCard__img"><NuxtImg
-                    src="/lorem.png"
+                    :src="rewardItem.image"
                     alt="your reward"
                     width="150px"
                     height="150px"/>
@@ -76,10 +76,10 @@ watchEffect(changeVisualNet)
   >
     <SwiperSlide  v-for="rewardItem in getRewardList"
             :key="rewardItem.$id"
-            class="rewardCard grow">
+            class="rewardCard ">
                       <div class="rewardCard__title">{{rewardItem.name}}</div>
                 <div class="rewardCard__img"><NuxtImg
-                    src="/lorem.png"
+                    :src="rewardItem.image"
                     alt="your reward"
                     width="150px"
                     height="150px"/>
@@ -126,24 +126,35 @@ watchEffect(changeVisualNet)
   transition: all 0.4s ease;
 }
 .rewardCard{
-
     @include flex;
     @include font($playFair,500,20px,28px,$gold);
     flex-direction: column;
+    flex: 1;
     border: 2px $gold solid;
     padding: 10px 20px;
     border-radius: 10px;
     row-gap:20px;
-    width:48%;
+    min-width:48%;
     max-width: 270px;
+    text-align:center;
     &:nth-of-type(odd){
         border: 2px $blue solid;
+
     }
     @include media($mobile){
         padding:10px 10px;
         @include fontsize(15px,17px);
     }
+    &__img{
+      width:80%;
+      height: 40%;
 
+      & img{
+        width:100%;
+        height: 100%;
+        border-radius: 10px
+      }
+    }
     &__price{
         width: 70%;
         button{
@@ -189,31 +200,30 @@ watchEffect(changeVisualNet)
         @include media($mobile){
             padding: 5px;
             font-size:14px;
+            width:80%;
         }
     }
 }
 .swiper {
+   display: flex;
     width: 300px;
       @include font($playFair,500,20px,28px,$gold);
-
+      min-height: 400px;
   @include media($mobile){
     width:75%;
-    min-height: 100%;
     @include fontsize(15px, 18px);
   }
 }
 
 .swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction:column;
+   display: flex;
+  flex-direction: column;
+  align-items:center;
+  height: auto;
   border-radius: 18px;
   @include font($playFair,500,20px,28px,$gold);
-  min-height: 400px;
   background: $backBLue;
-  text-align:center;
-
+  min-width:100%;
   @include media($mobile){
     @include fontsize(15px,18px);
   }

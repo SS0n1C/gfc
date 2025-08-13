@@ -8,6 +8,7 @@ interface IquizQuest{
     slug:string,
     alreadyUse:boolean,
     name:string,
+    avatar:string,
 }
 const defaultQuiz:  IquizQuest[] = [
     {
@@ -20,6 +21,7 @@ const defaultQuiz:  IquizQuest[] = [
         slug:" ",
         alreadyUse:false,
         name:"name",
+        avatar:"/ava.png"
     }
 ]
 export const getQuizData = defineStore("questionData",{

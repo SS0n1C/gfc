@@ -82,7 +82,7 @@ function goToRevard(){
 .header{
     margin-bottom: 5px;
     position: relative;
-    padding:20px 10px;
+    padding:10px 10px;
     @include font($playFair,500,20px,30px,$gold);
     @include flex;
     justify-content: space-between;
@@ -92,7 +92,7 @@ function goToRevard(){
     text-transform: uppercase;
     
     @include media($mobile){
-        padding: 10px;
+        padding: 5px;
         font-size: 18px;
     }
 
@@ -167,23 +167,22 @@ function goToRevard(){
     }
 }
 .avatar{
-    background: white;
+    background: $slickGold;
     border-radius: 20px;
     padding: 2px 3px 3px 3px;
     margin-right: 5px;
-    width:40px;
-    height:40px;
+    width:50px;
+    height:50px;
     overflow: hidden;
-   border:1px rgba(39, 39, 150, 0.395) solid;
+    border:2px rgba(39, 39, 150, 0.395) solid;
     & img{
-        object-fit: cover;
         width: 100%;
         height:100%;
-        display: block;
+        object-fit: cover;
     }
     @include media($mobile){
-        height: 30px;
-        width: 30px;
+        height: 40px;
+        width: 40px;
     }
 }
 </style>

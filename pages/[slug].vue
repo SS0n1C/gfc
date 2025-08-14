@@ -99,7 +99,8 @@ section{
     }
 }
 .questOption{
-  @include font($playFair,500,24px,28px,$gold);
+  @include font($RobotoSlab,500,24px,28px,$gold);
+  text-transform: capitalize;
 
   &>div{
     border-bottom:1px $gold solid;

@@ -19,18 +19,18 @@ onMounted(async()=>{
   }
 })
 async function buyReward(rewardScore,rewardID){
-    let conf = confirm("are you sure?")
+    let conf = confirm("Ти впевненна?")
     if(conf){
         if(useUserData.data>=rewardScore){
         const userScore = useUserData.data - rewardScore
         const oldUserRewID = useUserData.rewardID
         const newUserRewID = [...oldUserRewID,rewardID]
         await changeUserData(useUserData,undefined,String(userScore),newUserRewID)
-        alert("congrat")
+        alert("Поздоровляю!!!")
         console.log(useUserData)
         window.location.reload()
     } else {
-        alert("you are too poore")
+        alert("Не вистачає котобалів :(")
     }
     }
 

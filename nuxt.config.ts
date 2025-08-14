@@ -5,6 +5,12 @@ export default defineNuxtConfig({
   modules: ['@nuxt/image', '@nuxtjs/tailwindcss', '@nuxt/icon', '@pinia/nuxt',],
   css: ['@/assets/css/app.scss'],
   ssr: false,
+    nitro: {
+    preset: 'static'
+  },
+  app: {
+    baseURL:'/gfc/'
+  },
   vite: {
     css: {
       preprocessorOptions: {

@@ -4,6 +4,7 @@ const router = useRouter()
 const routed = useRoute()
 const userInfo = useAutStore()
 const loader = useLoading()
+
 const logout = async () => {
     loader.set(true)
     if(store.user.name !== "user"){
@@ -27,12 +28,17 @@ onMounted(async() =>{
         console.log(error)
     }
 })
-function goToRevard(){
-    if(routed.path == '/reward'){
-        router.push("/")
-    }else{
+async function goToRevard(){
+    if(store.user.name !== "guest"){
+        if(routed.path == '/reward'){
+            router.push("/")
+        }else{
         router.push("/reward")
+        }
+    } else {
+        alert("Спочатку залогінься")
     }
+
 
 }
 
@@ -60,7 +66,7 @@ function goToRevard(){
             height="33px"/>
             <NuxtImg 
             v-else
-            src="/ava.png"
+            src="https://fra.cloud.appwrite.io/v1/storage/buckets/reward_storage/files/689c7c80000fbad6f16d/view?project=67f26d0a0035c9009631&mode=admin"
             alt="avatar"
             width="33px"
             height="33px"/>

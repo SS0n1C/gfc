@@ -21,8 +21,10 @@ onMounted(async()=>{
 async function buyReward(rewardScore,rewardID){
     let conf = confirm("Ти впевненна?")
     if(conf){
-        if(useUserData.data>=rewardScore){
+        if(+useUserData.data >= +rewardScore){
+        console.log(useUserData.data)
         const userScore = useUserData.data - rewardScore
+        console.log(userScore)
         const oldUserRewID = useUserData.rewardID
         const newUserRewID = [...oldUserRewID,rewardID]
         await changeUserData(useUserData,undefined,String(userScore),newUserRewID)
@@ -76,7 +78,7 @@ watchEffect(changeVisualNet)
   >
     <SwiperSlide  v-for="rewardItem in getRewardList"
             :key="rewardItem.$id"
-            class="rewardCard ">
+            class="rewardCard min-h-[100px] ">
                       <div class="rewardCard__title">{{rewardItem.name}}</div>
                 <div class="rewardCard__img"><NuxtImg
                     :src="rewardItem.image"

@@ -6,8 +6,10 @@ export default defineNuxtConfig({
   css: ['@/assets/css/app.scss'],
   ssr: false,
   app: {
-    baseURL:'/gfc/'
+    baseURL:'/gfc/',
+    buildAssetsDir: 'assets',
   },
+
   vite: {
     css: {
       preprocessorOptions: {

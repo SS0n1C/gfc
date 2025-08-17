@@ -52,7 +52,7 @@ onMounted(async()=>{
 </script>
 <template>
 <NuxtLayout>
-  <section class="flex justify-around grow rounded-t-[20px] p-8">
+  <section class="questSection flex justify-around grow rounded-t-[20px] p-8">
   <div class="min-w-full flex flex-col gap-y-[15px]">
     <div class="questOption flex justify-around">
       <div>{{ item.name }}</div>
@@ -81,8 +81,8 @@ onMounted(async()=>{
 </template>
 
 
-<style lang="scss" scoped>
-section{
+<style lang="scss">
+.questSection{
     position:relative;
     background:$backBLue;
     border:2px rgba(39, 39, 150, 0.395) solid;

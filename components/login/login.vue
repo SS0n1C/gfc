@@ -87,6 +87,9 @@ onMounted(async() =>{
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    @include media($mobile){
+        justify-content: normal;
+    }
 }
 .formSection{
     position: relative;
@@ -98,6 +101,7 @@ onMounted(async() =>{
     border:2px rgba(39, 39, 150, 0.395) solid;
     @include media($mobile){
         height: 370px;
+        
     }
     &::after{
         content: "";

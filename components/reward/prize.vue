@@ -29,7 +29,6 @@ async function buyReward(rewardScore,rewardID){
         const newUserRewID = [...oldUserRewID,rewardID]
         await changeUserData(useUserData,undefined,String(userScore),newUserRewID)
         alert("Поздоровляю!!!")
-        console.log(useUserData)
         window.location.reload()
     } else {
         alert("Не вистачає котобалів :(")

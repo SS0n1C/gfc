@@ -59,7 +59,7 @@ defineExpose({ revealAll })
 onMounted(() => {
   ctx = canvas.value.getContext('2d', { willReadFrequently: true })
   const image = new Image()
-  image.src = '/scratchCard.jpg' 
+  image.src = `scratchCard.jpg`
 
 image.onload = () => {
   ctx.drawImage(image, 0, 0, props.width, props.height)

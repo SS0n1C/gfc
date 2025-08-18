@@ -9,7 +9,6 @@ export default defineNuxtConfig({
     baseURL:'/gfc/',
     buildAssetsDir: 'assets',
   },
-
   vite: {
     css: {
       preprocessorOptions: {

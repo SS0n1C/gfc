@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deploy": "gh-pages -d dist"
+    "deploy": "nuxt build && nuxt generate && gh-pages -d dist"
   },
   "dependencies": {
     "@nuxt/icon": "^1.10.3",

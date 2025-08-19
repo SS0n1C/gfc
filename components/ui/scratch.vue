@@ -9,6 +9,7 @@
 
 <script setup>
 import { ref, onMounted, defineExpose } from 'vue'
+import scratchCard from '~/public/scratchCard.jpg'
 
 const props = defineProps({
   width: { type: Number, default: 300 },
@@ -59,7 +60,7 @@ defineExpose({ revealAll })
 onMounted(() => {
   ctx = canvas.value.getContext('2d', { willReadFrequently: true })
   const image = new Image()
-  image.src = `scratchCard.jpg`
+  image.src = scratchCard
 
 image.onload = () => {
   ctx.drawImage(image, 0, 0, props.width, props.height)

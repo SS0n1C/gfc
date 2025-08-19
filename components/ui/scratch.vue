@@ -75,7 +75,7 @@ image.onload = () => {
 })
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .scratch-wrapper {
   text-shadow: 2px 2px 3px $brown;
   text-transform: uppercase;

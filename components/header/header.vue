@@ -31,8 +31,10 @@ onMounted(async() =>{
 async function goToRevard(){
     if(store.user.name !== "guest"){
         if(routed.path == '/reward'){
+            console.log(routed.path)
             router.push("/")
         }else{
+            console.log(routed.path)
         router.push("/reward")
         }
     } else {

@@ -22,9 +22,7 @@ async function buyReward(rewardScore,rewardID){
     let conf = confirm("Ти впевненна?")
     if(conf){
         if(+useUserData.data >= +rewardScore){
-        console.log(useUserData.data)
         const userScore = useUserData.data - rewardScore
-        console.log(userScore)
         const oldUserRewID = useUserData.rewardID
         const newUserRewID = [...oldUserRewID,rewardID]
         await changeUserData(useUserData,undefined,String(userScore),newUserRewID)
@@ -44,7 +42,7 @@ watchEffect(changeVisualNet)
 </script>
 
 <template>
-    <div class="flex rewardSection p-8 gap-y-[20px] flex-col items-center min-h-screen rounded-t-[20px]">
+    <div class="flex overflow-hidden rewardSection p-8 gap-y-[20px] flex-col items-center min-h-screen rounded-t-[20px]">
         <div>
             <h2>choose your reward</h2>
         </div>
@@ -208,8 +206,9 @@ watchEffect(changeVisualNet)
 .swiper {
    display: flex;
     width: 300px;
+    max-height: 100vh;
       @include font($playFair,500,20px,28px,$gold);
-      min-height: 400px;
+      min-height: 400px; 
   @include media($mobile){
     width:75%;
     @include fontsize(15px, 18px);

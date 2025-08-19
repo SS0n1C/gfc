@@ -50,7 +50,7 @@ function reveal() {
     <div class="questText min-w-[200px] flex justify-center items-center grow">
       <div>{{ itemText.quest }}</div>
     </div>
-    <div class="flex justify-center items-center grow">
+    <div class="flex justify-center items-center">
       <uiScratch 
           ref="scratch" 
           :width="200" 
@@ -68,85 +68,8 @@ function reveal() {
 </section>
 </template>
 
-<style  lang="scss" scoped>
-.questSection{
-    position:relative;
-    background:$backBLue;
-    border:2px rgba(39, 39, 150, 0.395) solid;
-        &::after{
-        content: "";
-        position: absolute;
-        top: 4px;
-        left: 5px;
-        right: 5px;
-        bottom: 4px;
-        border-radius: 20px;
-        border: 1px solid $gold; 
-        pointer-events: none;
-    }
-}
-.questOption{
-  @include font($RobotoSlab,500,24px,28px,$gold);
-  text-transform: capitalize;
+<style>
+/* всі стилі знаходятся в папці assets */
 
-  &>div{
-    border-bottom:1px $gold solid;
-  }
-}
-.questText{
-  padding: 10px 15px;
-  align-self: center;
-  @include font($playFair,700,20px,28px,$gold);
-  letter-spacing: 1px;
-  text-align: center;
-  background: $lighBlue;
-  width: 85%;
-  border-radius: 10px;
-  border:2px rgba(39, 39, 150, 0.395) solid;
-  position:relative;
-        &::after{
-        content: "";
-        position: absolute;
-        top: 2px;
-        left: 3px;
-        right: 3px;
-        bottom: 2px;
-        border-radius: 10px;
-        border: 1px solid $gold; 
-        pointer-events: none;
-    }
-  @include media($mobile){
-    @include fontsize(16px,18px)
-  }
-} 
-.btn{
-  background-blend-mode: overlay;
-  filter:brightness(1.1) contrast(1.2);
-  position:relative;
-  text-shadow: 2px 2px 3px $brown;
-  border:2px rgba(39, 39, 150, 0.395) solid;
-  padding: 10px 20px;
-  background: $slickGold;
-  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
-  border-radius: 12px;
-  color: #1a1a1a;
-  @include font($playFair,400,16px,16px,black);
 
-  &:last-of-type{
-    border:1px $gold solid;
-    background:$lighBlue;
-    margin-left: 30px;
-    box-shadow: 0 4px 10px rgba(0, 42, 255, 0.3);
-  }
-}
-.btnIcon{
-  position:absolute;
-  top: -7px;
-  left: -5px;
-}
-.scratchCard{
-  @include media($mobile){
-    width:100px;
-  }
-}
 </style>

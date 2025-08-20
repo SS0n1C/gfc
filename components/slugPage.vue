@@ -60,7 +60,7 @@ function reveal() {
       <div class="flex justify-center items-center grow text-center">{{itemText.answer}}</div>
     </uiScratch>
     </div>
-    <div class="flex justify-center items-center m-t-[20px]">
+    <div class="flex justify-center items-center mt-[20px]">
       <button type="button" class="btn" @click="right()"><Icon class="btnIcon" name="icon-park-solid:correct" style="color:green" size="20px"/>Yes</button>
       <button type="button" class="btn" @click="wrong()"><Icon class="btnIcon" name="icomoon-free:cross" style="color:red" size="20px"/>No</button>
     </div>

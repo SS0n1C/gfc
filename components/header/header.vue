@@ -47,7 +47,7 @@ async function goToRevard(){
 <header class="header">
     <div>
     <div class="revard items-center flex bg-[white] rounded-2xl p-1" @click="goToRevard()">
-        <Icon v-if="routed.path == '/reward'" name="fluent-color:question-circle-32" class="rewardIcon" size="28px" />
+        <Icon v-if="routed.path == '/reward'|| routed.path == '/reward/'" name="fluent-color:question-circle-32" class="rewardIcon" size="28px" />
         <Icon v-else name="noto:trophy" class="rewardIcon" size="28px" />
     </div>
     </div>

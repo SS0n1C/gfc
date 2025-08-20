@@ -44,10 +44,10 @@ function reveal() {
   <section class="questSection flex justify-around grow rounded-t-[20px] p-8">
   <div class="min-w-full flex flex-col gap-y-[15px]">
     <div class="questOption flex justify-around">
-      <div>{{ item.name }}</div>
-      <div>{{ itemText.price }}</div>
+      <div><h4>{{ item.name }}</h4></div>
+      <div><h4>{{ itemText.price }}</h4></div>
     </div>
-    <div class="questText min-w-[200px] flex justify-center items-center grow">
+    <div class="questText min-w-[200px] max-h-[250px] flex justify-center items-center grow">
       <div>{{ itemText.quest }}</div>
     </div>
     <div class="flex justify-center items-center">

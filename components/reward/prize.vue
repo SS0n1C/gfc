@@ -51,7 +51,7 @@ watchEffect(changeVisualNet)
             <Icon v-else name="fluent:slide-text-20-filled" style="color:#999999" size="25px" @click="changeVisual()"/>
         </div>
         <transition name="fade-slide" mode="out-in">
-        <div v-if="changeVisualNet" class="rewardField flex flex-wrap  justify-around items-stretch gap-[20px] min-w-full ">
+        <div v-if="changeVisualNet" class="rewardField flex flex-wrap items-center justify-around gap-[20px] ">
             <div class="rewardCard" v-for="rewardItem in getRewardList"
             :key="rewardItem.$id">
                 <div class="rewardCard__title">{{rewardItem.name}}</div>
@@ -61,7 +61,7 @@ watchEffect(changeVisualNet)
                     width="150px"
                     height="150px"/>
                 </div>
-                <div class="rewardCard__discript grow">{{ rewardItem.discript }}</div>
+                <div class="rewardCard__discript ">{{ rewardItem.discript }}</div>
                 <div class="rewardCard__price" v-if="!useUserData.rewardID.find(e=>e == rewardItem.$id )" @click="buyReward(rewardItem.price,rewardItem.$id)"><button type="button">{{rewardItem.price}}</button></div>
                 <div class="rewardCard__buyed" v-else>already have</div>
             </div>
@@ -127,17 +127,22 @@ watchEffect(changeVisualNet)
 .rewardCard{
     @include flex;
     @include font($playFair,500,20px,28px,$gold);
+    background:linear-gradient(165deg,rgba(72, 61, 120, 0.93) 0%, rgba(44, 122, 150, 1) 50%, rgba(39, 25, 79, 0.93) 100%);
     flex-direction: column;
-    flex: 1;
+    flex-grow: 1;
     border: 2px $gold solid;
     padding: 10px 20px;
     border-radius: 10px;
     row-gap:20px;
     min-width:48%;
     max-width: 270px;
+    max-height: fit-content;
     text-align:center;
+    box-shadow: 2px 2px 10px 1px #FACC15;
+    text-shadow: 3px 3px 4px $brown;
     &:nth-of-type(odd){
         border: 2px $blue solid;
+        background: linear-gradient(193deg,rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(16, 154, 181, 1) 100%);
 
     }
     @include media($mobile){
@@ -224,6 +229,7 @@ watchEffect(changeVisualNet)
   @include font($playFair,500,20px,28px,$gold);
   background: $backBLue;
   min-width:100%;
+  max-height:none;
   @include media($mobile){
     @include fontsize(15px,18px);
   }

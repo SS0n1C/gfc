@@ -21,11 +21,17 @@
   text-transform: capitalize;
 
   &>div{
-    border-bottom:1px $gold solid;
+    padding: 5px 10px;
+    background: linear-gradient(91deg,rgba(72, 61, 120, 0.93) 0%, rgba(161, 188, 196, 1) 50%, rgba(39, 25, 79, 0.93) 100%);
+    min-width: 20%;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+    text-shadow: 2px 2px 3px $brown;
   }
   @include media($mobile){
     &>div>h4{
       @include fontsize(18px,20px);
+      min-width: 25%;
     }
   }
 }

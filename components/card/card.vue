@@ -1,11 +1,11 @@
 <script setup>
-  const getUser = await account.get()
+   const getUser = await account.get()
   const useUserData = await getUserData(getUser)
   const useQuizData = getQuizData() 
   const getAllCard = computed(()=> generateCardData(useQuizData))
   const CARD_DATA = getAllCard.value
-
     CARD_DATA.map(allQArr =>{
+      allQArr.quiz.sort((a,b) => a.price - b.price)
       allQArr.quiz.map(questItem =>{
         questItem.alreadyUse = useUserData.questID.includes(questItem.id)
       })

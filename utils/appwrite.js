@@ -42,7 +42,7 @@ export async function createUserData(user) {
     DB_ID,
     USER_COLLECTION,
       ID.unique(),
-      {userID: user.$id, data:"0",questID:0,rewardID:0,live:"0"}
+      {userID: user.$id, data:"0",questID:[],rewardID:[],live:"0"}
   )
   return createDoc
 }

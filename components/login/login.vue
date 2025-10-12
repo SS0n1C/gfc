@@ -59,7 +59,7 @@ onMounted(async() =>{
                 <h3>Welcome</h3>
             </div>
             <div class="formSection--h">
-                <h2>Please sign</h2>
+                <h2>Please signs</h2>
             </div>
             <div class="formSection--input">
                 <Icon name="uiw:mail" style="color: #FACC15" />

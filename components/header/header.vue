@@ -73,7 +73,9 @@ async function goToRevard(){
     </div>
     <div class="login">
         <div class="login__name">
+            <NuxtLink to="/userPage">
             {{ userInfo.user.name }}
+            </NuxtLink>
         </div>
         <div class="login__logout pl-[5px] pt-[7px]" @click=logout()>
             <Icon name="uil:exit" style="color: #FACC15" class="login__logout--icon"  size="20px" />

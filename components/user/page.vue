@@ -1,5 +1,9 @@
 <script  setup>
-
+const getUser = await account.get()
+const usetUserData = await getUserData(getUser)
+const getAllquest = getQuizData()
+console.log(usetUserData)
+console.log(getAllquest)
 </script>
 
 <template>

@@ -1,7 +1,4 @@
 <script  setup>
-import { UserPage } from '#components';
-
-
 </script>
 
 <template>

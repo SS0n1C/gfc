@@ -1,9 +1,16 @@
 <script  setup>
+const getAllquest = getQuizData()
 const getUser = await account.get()
 const usetUserData = await getUserData(getUser)
-const getAllquest = getQuizData()
+const useQuest = await getAllQuestion(getAllquest)
+const store = useAutStore()
+const router = useRouter()
+let quizLength = getAllquest.quiz.length
 console.log(usetUserData)
-console.log(getAllquest)
+let quizUserLength = usetUserData.questID.length
+onMounted(async() =>{
+  getUser?store.set(getUser):router.push("/login")
+})
 </script>
 
 <template>
@@ -12,7 +19,7 @@ console.log(getAllquest)
       <div class="round__insaid">100%</div>
     </div>
     <div class="stats">
-      <div class="stats__item"><span>100</span></div>
+      <div class="stats__item"><span>{{ quizLength }} / {{ quizUserLength }}</span></div>
       <div class="stats__item"><span>30</span></div>
       <div class="stats__item"><span>40</span></div>
       <div class="stats__item"><span>w:50%</span></div>

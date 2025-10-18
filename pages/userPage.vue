@@ -3,9 +3,7 @@
 
 <template>
   <NuxtLayout>
-    <UserPage>
-        
-    </UserPage>
+    <UserPage/>
   </NuxtLayout>
 </template>
 <style lang="scss">

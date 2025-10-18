@@ -3,7 +3,6 @@ const store = useAutStore()
 const router = useRouter()
 const routed = useRoute()
 const userInfo = useAutStore()
-const loader = useLoading()
 
 const logout = async () => {
     loader.set(true)
@@ -25,7 +24,7 @@ onMounted(async() =>{
             avatar:userScore.avatar,
         })
     } catch (error) {
-        console.log(error)
+        router.push("/login")
     }
 })
 async function goToRevard(){

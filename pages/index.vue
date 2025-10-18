@@ -14,7 +14,8 @@ onMounted(async()=>{
     }
   } catch (error) {
     router.push("/login")
-  } finally {
+  } 
+  finally {
     useLoader.set(false)
   }
 })

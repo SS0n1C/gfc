@@ -8,6 +8,7 @@ const router = useRouter()
 let quizLength = getAllquest.quiz.length
 let quizUserLength = usetUserData.questID.length
 let quizCorresct = usetUserData.correctAnswer
+const progress = Math.round(quizUserLength *100 / quizLength)
 onMounted(async() =>{
   getUser?store.set(getUser):router.push("/login")
 })
@@ -15,14 +16,17 @@ onMounted(async() =>{
 
 <template>
   <div class="userStats">
-    <div class="round">
-      <div class="round__insaid">100%</div>
+    <div class="round"
+     :style="{
+      '--progress': progress + '%'
+    }">
+      <div class="round__insaid">{{ Math.round(quizUserLength *100 / quizLength) }} %</div>
     </div>
     <div class="stats">
       <div class="stats__item"><span>{{ quizLength }} / {{ quizUserLength }}</span></div>
       <div class="stats__item"><span>{{quizCorresct}}</span></div>
       <div class="stats__item"><span>{{ quizUserLength - quizCorresct  }}</span></div>
-      <div class="stats__item"><span>w:{{ Math.round((quizUserLength - quizCorresct)*100 / quizUserLength) }} %</span></div>
+      <div class="stats__item"><span>w:{{quizCorresct=="0"?quizUserLength:Math.round(quizCorresct*100 / quizUserLength) }} %</span></div>
     </div>
   </div>
 </template>
@@ -38,8 +42,8 @@ onMounted(async() =>{
     height: 200px;
     border-radius: 50%;
     background: conic-gradient(
-    #203139 0% 80%, 
-    #ddd 40% 100%,);
+    #203139 0% var(--progress),
+    #ddd var(--progress) 100%,);
     border: 2px blueviolet solid;
 
     &__insaid{

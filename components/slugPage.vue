@@ -19,9 +19,7 @@ async function right(){
   try{
     const oldUseQId = useUserData.questID
     const oldUserData = useUserData.data
-    console.log(useUserData.correctAnswer)
     let addCorrectScore = String(++useUserData.correctAnswer)
-    console.log(addCorrectScore)
     const userQuestID = [...oldUseQId,itemText.id]
     const userScore = String(Number(oldUserData) + Number(itemText.price))
     await changeUserData(useUserData,userQuestID,userScore,undefined,undefined,addCorrectScore)

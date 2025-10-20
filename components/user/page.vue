@@ -6,8 +6,8 @@ const useQuest = await getAllQuestion(getAllquest)
 const store = useAutStore()
 const router = useRouter()
 let quizLength = getAllquest.quiz.length
-console.log(usetUserData)
 let quizUserLength = usetUserData.questID.length
+let quizCorresct = usetUserData.correctAnswer
 onMounted(async() =>{
   getUser?store.set(getUser):router.push("/login")
 })
@@ -20,9 +20,9 @@ onMounted(async() =>{
     </div>
     <div class="stats">
       <div class="stats__item"><span>{{ quizLength }} / {{ quizUserLength }}</span></div>
-      <div class="stats__item"><span>30</span></div>
-      <div class="stats__item"><span>40</span></div>
-      <div class="stats__item"><span>w:50%</span></div>
+      <div class="stats__item"><span>{{quizCorresct}}</span></div>
+      <div class="stats__item"><span>{{ quizUserLength - quizCorresct  }}</span></div>
+      <div class="stats__item"><span>w:{{ Math.round((quizUserLength - quizCorresct)*100 / quizUserLength) }} %</span></div>
     </div>
   </div>
 </template>

@@ -5,14 +5,12 @@ const routed = useRoute()
 const userInfo = useAutStore()
 
 const logout = async () => {
-    loader.set(true)
     if(store.user.name !== "user"){
         await account.deleteSession("current")
         console.log("exit")
         await router.push("/login")
         store.clear()
     }
-    loader.set(false)
 }
 onMounted(async() =>{
     try {

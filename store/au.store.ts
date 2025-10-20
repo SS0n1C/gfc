@@ -4,6 +4,7 @@ interface IautStore {
     score: number
     status: boolean,
     live:number,
+    correctAnswer:number,
 }
 const defaultUser: {user : IautStore} =  {
     user:{
@@ -12,6 +13,7 @@ const defaultUser: {user : IautStore} =  {
         score: 0,
         status: false,
         live:0,
+        correctAnswer:0,
     }
 }
 export const useAutStore = defineStore("isAuth",{

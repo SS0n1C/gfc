@@ -15,6 +15,23 @@ onMounted(async() =>{
 </script>
 
 <template>
+  <div class="userStatsSection grow  flex flex-col flex-wrap pt-[50px] p-[20px] gap-[15px]  rounded-t-[20px]">
+    <nav class="statsNavigation">
+      <div class="statsNavigation__butt">
+        <NuxtLink to="/reward">
+        <button type="button">
+          <Icon class="btnIcon" name="icon-park:left-two" style="color:green" size="25px"/>
+          to Rewards</button>
+        </NuxtLink>
+      </div>
+      <div class="statsNavigation__butt">
+        <NuxtLink to="/">
+        <button type="button">
+          <Icon class="btnIconLast" name="icon-park:up-two" style="color:green" size="25px"/>
+          to Questions</button>
+        </NuxtLink>
+      </div>
+    </nav>
   <div class="userStats">
     <div class="round"
      :style="{
@@ -29,12 +46,57 @@ onMounted(async() =>{
       <div class="stats__item"><span>w:{{quizCorresct=="0"?quizUserLength:Math.round(quizCorresct*100 / quizUserLength) }} %</span></div>
     </div>
   </div>
+  </div>
 </template>
 <style lang="scss">
+.statsNavigation{
+  @include flex;
+  min-width: 100%;
+  column-gap: 40px;
+
+  &__butt button{
+    position: relative;
+    padding: 10px 25px;
+    background:$lighBlue;
+    border-radius: 10px;
+    border:1px $gold solid;
+
+    .btnIcon{
+      right:50%;
+      transform:translate(-50%, 50%);
+    }
+    .btnIconLast{
+      position: absolute;
+      top:-3px;
+      right: 50%;
+      transform:translate(50%, -50%);
+    }
+  }
+}
+.userStatsSection{
+  background: $backBLue;
+  position:relative;
+  border:2px rgba(39, 39, 150, 0.395) solid;
+
+  &::after{
+    content:"";
+    position: absolute;
+    border:1px $gold solid;
+    top:7px;
+    left:7px;
+    right: 7px;
+    bottom:7px;
+    border-radius: 20px;
+    pointer-events: none;
+  }
+}
   .userStats{
     display: flex;
     justify-content: space-around;
     align-items: center;
+    @include font($RobotoSlab,700,20px,24px,$black);
+    min-width: 100%;
+    min-height: 100%;
   }
   .round{
     @include flex;
@@ -42,23 +104,28 @@ onMounted(async() =>{
     height: 200px;
     border-radius: 50%;
     background: conic-gradient(
-    #203139 0% var(--progress),
-    #ddd var(--progress) 100%,);
-    border: 2px blueviolet solid;
+    rgba(0, 0, 255, 0.341) 0% var(--progress),
+    $gold var(--progress) 100%,);
+      text-shadow: 1px 1px 2px $brown;
+      border:1px white  solid;
+      box-shadow: 5px 5px 7px 3px rgba(0,0,0,0.72);
+      background-blend-mode: overlay;
+      filter:brightness(1.1) contrast(1.2);
 
     &__insaid{
     width: 180px;
     height: 180px;
     border-radius: 50%;
-    background-color: blue;
+    background: linear-gradient(91deg,rgba(72, 61, 120, 0.93) 0%, rgba(161, 188, 196, 1) 50%, rgba(39, 25, 79, 0.93) 100%);
     @include flex;
+    border: 1px white solid;
     }
   }
   .stats{
     @include flex;
     &__item{
       @include flex;
-      @include font($playFair,400,20px,35px,$white);
+      @include font($RobotoSlab,400,20px,35px,$white);
       padding:0px 10px;
       border-right: 1px white solid;
       &:nth-of-type(2){

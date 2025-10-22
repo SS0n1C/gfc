@@ -3,8 +3,15 @@ const getAllquest = getQuizData()
 const getUser = await account.get()
 const usetUserData = await getUserData(getUser)
 const useQuest = await getAllQuestion(getAllquest)
+const getRewardList = await allReward()
 const store = useAutStore()
 const router = useRouter()
+const rewardArr = [
+  {id:0,title:"lorem lorem lorem",discription:"lorem lorem lorem lorem lorem",img:"/ava.png"},
+  {id:1,title:"lorem lorem lorem",discription:"lorem lorem lorem lorem lorem",img:"/ava.png"},
+  {id:2,title:"lorem lorem lorem",discription:"lorem lorem lorem lorem lorem",img:"/ava.png"},
+  {id:3,title:"lorem lorem lorem",discription:"lorem lorem lorem lorem lorem",img:"/ava.png"},
+]
 let quizLength = getAllquest.quiz.length
 let quizUserLength = usetUserData.questID.length
 let quizCorresct = usetUserData.correctAnswer
@@ -46,6 +53,19 @@ onMounted(async() =>{
       <div class="stats__item"><span>w:{{quizCorresct=="0"?quizUserLength:Math.round(quizCorresct*100 / quizUserLength) }} %</span></div>
     </div>
   </div>
+  <div class="userReward">
+    <div class="userReward__title">Your rewards</div>
+    <div class="userReward__field">
+    <div class="userReward__field--item"
+    v-for="rewardList in rewardArr">
+      <div class="rewardImg"><NuxtImg :src=rewardList.img></NuxtImg></div>
+      <div class="rewardDiscr">
+        <div class="rewardDiscr--title">{{ rewardList.title }}</div>
+        <div class="rewardDiscr--txt">{{ rewardList.discription }}</div>
+      </div>
+    </div>   
+    </div>
+  </div>
   </div>
 </template>
 <style lang="scss">
@@ -53,6 +73,8 @@ onMounted(async() =>{
   @include flex;
   min-width: 100%;
   column-gap: 40px;
+  justify-content: space-between;
+  padding: 0 10%;
 
   &__butt button{
     position: relative;

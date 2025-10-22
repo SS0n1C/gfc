@@ -64,7 +64,7 @@ export async function getAllQuestion(stateQuData) {
 export async function allReward(){
   const getReward = await DB.listDocuments(
     DB_ID,
-    REWARD_COLLECTION,
+    REWARD_COLLECTION,   
   )
   const getRewardList = getReward.documents
   return getRewardList

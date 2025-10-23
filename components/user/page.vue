@@ -7,7 +7,7 @@ const getRewardList = await allReward()
 const store = useAutStore()
 const router = useRouter()
 const rewardArr = [
-  {id:0,title:"lorem lorem lorem",discription:"lorem lorem lorem lorem lorem",img:"/ava.png"},
+  {id:0,title:"lorem lorem lorem",discription:"lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",img:"/ava.png"},
   {id:1,title:"lorem lorem lorem",discription:"lorem lorem lorem lorem lorem",img:"/ava.png"},
   {id:2,title:"lorem lorem lorem",discription:"lorem lorem lorem lorem lorem",img:"/ava.png"},
   {id:3,title:"lorem lorem lorem",discription:"lorem lorem lorem lorem lorem",img:"/ava.png"},
@@ -54,14 +54,14 @@ onMounted(async() =>{
     </div>
   </div>
   <div class="userReward">
-    <div class="userReward__title">Your rewards</div>
-    <div class="userReward__field">
-    <div class="userReward__field--item"
+    <div class="userReward__title flex items-center justify-center uppercase">Your rewards</div>
+    <div class="userReward__field flex flex-wrap justify-around items-center">
+    <div class="userReward__field--item flex  justify-around items-center max-w-[200px] min-w-[300px]"
     v-for="rewardList in rewardArr">
       <div class="rewardImg"><NuxtImg :src=rewardList.img></NuxtImg></div>
-      <div class="rewardDiscr">
-        <div class="rewardDiscr--title">{{ rewardList.title }}</div>
-        <div class="rewardDiscr--txt">{{ rewardList.discription }}</div>
+      <div class="rewadDiscr flex flex-col justify-around  min-h-[100%] ">
+        <div class="rewadDiscr__title flex items-center justify-center">{{ rewardList.title }}</div>
+        <div class="rewadDiscr__txt grow flex items-center justify-center"><span class="block">{{ rewardList.discription }}</span></div>
       </div>
     </div>   
     </div>
@@ -160,6 +160,30 @@ onMounted(async() =>{
         border: none;
         color: $gold;
       }
+    }
+  }
+  .userReward{
+    &__title{
+      @include font($playFair,600,24px,28px,$gold);
+      margin:30px 0;
+    }
+    &__field--item{
+      background: blueviolet;
+      padding:10px 5px;
+    }
+  }
+  .rewardImg{
+    width:40%;
+  }
+  .rewadDiscr{
+    width: 60%;
+    &__title{
+      @include font($playFair,500,20px,24px,$gold);
+      margin:10px 0;
+    }
+    &__txt{
+      @include font($playFair,400,16px,20px,$black);
+      margin:10px 0;
     }
   }
 </style>

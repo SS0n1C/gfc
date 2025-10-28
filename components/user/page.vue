@@ -6,12 +6,9 @@ const useQuest = await getAllQuestion(getAllquest)
 const getRewardList = await allReward()
 const store = useAutStore()
 const router = useRouter()
-const rewardArr = [
-  {id:0,title:"lorem lorem lorem",discription:"lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem",img:"/ava.png"},
-  {id:1,title:"lorem lorem lorem",discription:"lorem lorem lorem lorem lorem",img:"/ava.png"},
-  {id:2,title:"lorem lorem lorem",discription:"lorem lorem lorem lorem lorem",img:"/ava.png"},
-  {id:3,title:"lorem lorem lorem",discription:"lorem lorem lorem lorem lorem",img:"/ava.png"},
-]
+const rewardArr = getRewardList.filter((e)=>{
+  return usetUserData.rewardID.find(el => el == e.$id )
+})
 let quizLength = getAllquest.quiz.length
 let quizUserLength = usetUserData.questID.length
 let quizCorresct = usetUserData.correctAnswer
@@ -55,13 +52,13 @@ onMounted(async() =>{
   </div>
   <div class="userReward">
     <div class="userReward__title flex items-center justify-center uppercase">Your rewards</div>
-    <div class="userReward__field flex flex-wrap justify-around items-center">
-    <div class="userReward__field--item flex  justify-around items-center max-w-[200px] min-w-[300px]"
+    <div class="userReward__field flex flex-wrap justify-around items-stretch gap-[15px]">
+    <div class="userReward__field--item flex grow justify-around items-center h-[180px] gap-[10px] max-w-[200px] min-w-[300px] rounded-[25px]"
     v-for="rewardList in rewardArr">
-      <div class="rewardImg"><NuxtImg :src=rewardList.img></NuxtImg></div>
+      <div class="rewardImg"><NuxtImg :src=rewardList.image></NuxtImg></div>
       <div class="rewadDiscr flex flex-col justify-around  min-h-[100%] ">
-        <div class="rewadDiscr__title flex items-center justify-center">{{ rewardList.title }}</div>
-        <div class="rewadDiscr__txt grow flex items-center justify-center"><span class="block">{{ rewardList.discription }}</span></div>
+        <div class="rewadDiscr__title flex items-center justify-center">{{ rewardList.name }}</div>
+        <div class="rewadDiscr__txt grow flex justify-center"><span class="block">{{ rewardList.discript }}</span></div>
       </div>
     </div>   
     </div>
@@ -168,21 +165,29 @@ onMounted(async() =>{
       margin:30px 0;
     }
     &__field--item{
-      background: blueviolet;
+      background:$lighBlue;
       padding:10px 5px;
     }
   }
   .rewardImg{
     width:40%;
+
+    & img{
+      border-radius: 5px;
+      width: 200px;
+      height: 100%;
+      object-fit:fill;
+    }
   }
   .rewadDiscr{
     width: 60%;
+          text-align: center;
     &__title{
       @include font($playFair,500,20px,24px,$gold);
       margin:10px 0;
     }
     &__txt{
-      @include font($playFair,400,16px,20px,$black);
+      @include font($playFair,400,16px,20px,$white);
       margin:10px 0;
     }
   }

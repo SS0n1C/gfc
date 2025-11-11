@@ -19,7 +19,8 @@ onMounted(async() =>{
 </script>
 
 <template>
-  <div class="userStatsSection grow  flex flex-col flex-wrap pt-[50px] p-[20px] gap-[15px]  rounded-t-[20px]">
+  <section class="overflow-x-hidden">
+  <div class="userStatsSection grow  flex flex-col pt-[50px] p-[20px] gap-[25px]  rounded-t-[20px]">
     <nav class="statsNavigation">
       <div class="statsNavigation__butt">
         <NuxtLink to="/reward">
@@ -36,14 +37,14 @@ onMounted(async() =>{
         </NuxtLink>
       </div>
     </nav>
-  <div class="userStats">
+  <div class="userStats flex-wrap">
     <div class="round"
      :style="{
       '--progress': progress + '%'
     }">
       <div class="round__insaid">{{ Math.round(quizUserLength *100 / quizLength) }} %</div>
     </div>
-    <div class="stats">
+    <div class="stats pt-[10px]">
       <div class="stats__item"><span>{{ quizLength }} / {{ quizUserLength }}</span></div>
       <div class="stats__item"><span>{{quizCorresct}}</span></div>
       <div class="stats__item"><span>{{ quizUserLength - quizCorresct  }}</span></div>
@@ -53,7 +54,7 @@ onMounted(async() =>{
   <div class="userReward">
     <div class="userReward__title flex items-center justify-center uppercase">Your rewards</div>
     <div class="userReward__field flex flex-wrap justify-around items-stretch gap-[15px]">
-    <div class="userReward__field--item flex grow justify-around items-center h-[180px] gap-[10px] max-w-[200px] min-w-[300px] rounded-[25px]"
+    <div class="userReward__field--item flex grow justify-around items-center h-[180px] rounded-[25px]"
     v-for="rewardList in rewardArr">
       <div class="rewardImg"><NuxtImg :src=rewardList.image></NuxtImg></div>
       <div class="rewadDiscr flex flex-col justify-around  min-h-[100%] ">
@@ -64,25 +65,34 @@ onMounted(async() =>{
     </div>
   </div>
   </div>
+  </section>
 </template>
 <style lang="scss">
 .statsNavigation{
   @include flex;
   min-width: 100%;
-  column-gap: 40px;
-  justify-content: space-between;
-  padding: 0 10%;
+  justify-content: space-around;
 
-  &__butt button{
+  &__butt{
+     @include font($RobotoSlab,600,16px,18px,$white);
+    & button{
     position: relative;
     padding: 10px 25px;
     background:$lighBlue;
     border-radius: 10px;
     border:1px $gold solid;
+    @include media($mobile){
+      padding:5px 10px;
+      @include fontsize(14px,16px)
+    }
+  } 
 
     .btnIcon{
       right:50%;
       transform:translate(-50%, 50%);
+      @include media($mobile){
+        top: -11px;
+      }
     }
     .btnIconLast{
       position: absolute;
@@ -130,6 +140,10 @@ onMounted(async() =>{
       box-shadow: 5px 5px 7px 3px rgba(0,0,0,0.72);
       background-blend-mode: overlay;
       filter:brightness(1.1) contrast(1.2);
+    @include media($mobile){
+        width: 100px;
+        height: 100px;
+    }
 
     &__insaid{
     width: 180px;
@@ -138,6 +152,10 @@ onMounted(async() =>{
     background: linear-gradient(91deg,rgba(72, 61, 120, 0.93) 0%, rgba(161, 188, 196, 1) 50%, rgba(39, 25, 79, 0.93) 100%);
     @include flex;
     border: 1px white solid;
+    @include media($mobile){
+        width: 90px;
+        height: 90px;
+    }
     }
   }
   .stats{
@@ -147,6 +165,10 @@ onMounted(async() =>{
       @include font($RobotoSlab,400,20px,35px,$white);
       padding:0px 10px;
       border-right: 1px white solid;
+      @include media($mobile){
+        @include font($RobotoSlab,400,16px,20px,$white);
+        padding: 0 5px;
+      }
       &:nth-of-type(2){
         color:blue
       }
@@ -167,28 +189,44 @@ onMounted(async() =>{
     &__field--item{
       background:$lighBlue;
       padding:10px 5px;
+      overflow: hidden;
+      max-width: 40%;
+      min-width: 220px;
+      border:1px $gold solid;
     }
   }
   .rewardImg{
     width:40%;
+    padding: 5px;
 
     & img{
       border-radius: 5px;
       width: 200px;
       height: 100%;
       object-fit:fill;
+      @include media($mobile){
+        width: 100px;
+      }
     }
   }
   .rewadDiscr{
     width: 60%;
-          text-align: center;
+    text-align: center;
     &__title{
       @include font($playFair,500,20px,24px,$gold);
       margin:10px 0;
+      @include media($mobile){
+        @include fontsize(16px,20px);
+        margin:5px 0;
+      }
     }
     &__txt{
       @include font($playFair,400,16px,20px,$white);
       margin:10px 0;
+      @include media($mobile){
+        @include fontsize(14px,18px);
+        margin:5px 0;
+      }
     }
   }
 </style>

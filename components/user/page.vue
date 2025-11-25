@@ -103,7 +103,8 @@ onMounted(async() =>{
   }
 }
 .userStatsSection{
-  background: $backBLue;
+  background: #06012d99;
+  filter:brightness(1) contrast(1.1);
   position:relative;
   border:2px rgba(39, 39, 150, 0.395) solid;
 
@@ -133,13 +134,13 @@ onMounted(async() =>{
     height: 200px;
     border-radius: 50%;
     background: conic-gradient(
-    rgba(0, 0, 255, 0.341) 0% var(--progress),
-    $gold var(--progress) 100%,);
+    blue 0% var(--progress),
+    red var(--progress) 100%,);
       text-shadow: 1px 1px 2px $brown;
-      border:1px white  solid;
+      border:1px $gold  solid;
       box-shadow: 5px 5px 7px 3px rgba(0,0,0,0.72);
       background-blend-mode: overlay;
-      filter:brightness(1.1) contrast(1.2);
+      filter:brightness(1.3) contrast(1.2);
     @include media($mobile){
         width: 100px;
         height: 100px;
@@ -149,17 +150,26 @@ onMounted(async() =>{
     width: 180px;
     height: 180px;
     border-radius: 50%;
-    background: linear-gradient(91deg,rgba(72, 61, 120, 0.93) 0%, rgba(161, 188, 196, 1) 50%, rgba(39, 25, 79, 0.93) 100%);
+    background: $backBLue;
+    @include font($playFair,500,28px,32px,$gold);
     @include flex;
-    border: 1px white solid;
+    text-shadow: 1px 1px 4px black;
+    border: 1px $gold solid;
     @include media($mobile){
         width: 90px;
         height: 90px;
+        @include fontsize(18px,20px);
     }
     }
   }
   .stats{
     @include flex;
+    background: $deepBlue;
+    border:1px grey solid;
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    text-shadow: 2px 2px 4px black;
     &__item{
       @include flex;
       @include font($RobotoSlab,400,20px,35px,$white);
@@ -187,36 +197,34 @@ onMounted(async() =>{
       margin:30px 0;
     }
     &__field--item{
-      background:$lighBlue;
-      padding:10px 5px;
+      background: $deepBlue;
       overflow: hidden;
-      max-width: 40%;
-      min-width: 220px;
-      border:1px $gold solid;
+      min-width: 40%;
+      max-width: 500px;
+      border:1px grey solid;
     }
   }
-  .rewardImg{
-    width:40%;
-    padding: 5px;
+.rewardImg {
+  width: 40%;
+  height: 100%;
+  position: relative;
+}
 
-    & img{
-      border-radius: 5px;
-      width: 200px;
-      height: 100%;
-      object-fit:fill;
-      @include media($mobile){
-        width: 100px;
-      }
-    }
-  }
+.rewardImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;   
+  border-radius: 5px;
+}
   .rewadDiscr{
     width: 60%;
     text-align: center;
+    padding: 10px 10px;
     &__title{
       @include font($playFair,500,20px,24px,$gold);
       margin:10px 0;
       @include media($mobile){
-        @include fontsize(16px,20px);
+        @include fontsize(14px,16px);
         margin:5px 0;
       }
     }
@@ -224,7 +232,7 @@ onMounted(async() =>{
       @include font($playFair,400,16px,20px,$white);
       margin:10px 0;
       @include media($mobile){
-        @include fontsize(14px,18px);
+        @include fontsize(13px,15px);
         margin:5px 0;
       }
     }

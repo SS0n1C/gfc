@@ -1,1 +1,0 @@
-import{L as e}from"./CCIdm9ab.js";const t={user:{email:"",name:"guest",score:0,status:!1,live:0,correctAnswer:0}},r=e("isAuth",{state:()=>t,getters:{isAuth:s=>s.user.status,score:s=>s.user.score},actions:{clear(){this.$patch(t)},set(s){this.$patch({user:s})}}}),o=e("isLoad",{state:()=>({isLoad:!0}),actions:{set(s){this.$patch({isLoad:s})}}});export{r as a,o as u};

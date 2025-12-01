@@ -43,12 +43,27 @@ onMounted(async() =>{
       '--progress': progress + '%'
     }">
       <div class="round__insaid">{{ Math.round(quizUserLength *100 / quizLength) }} %</div>
+      <div class="round__discript">
+        <span> % пройдених питань </span>
+      </div>
     </div>
     <div class="stats pt-[10px]">
-      <div class="stats__item"><span>{{ quizLength }} / {{ quizUserLength }}</span></div>
-      <div class="stats__item"><span>{{quizCorresct}}</span></div>
-      <div class="stats__item"><span>{{ quizUserLength - quizCorresct  }}</span></div>
-      <div class="stats__item"><span>w:{{quizCorresct=="0"?quizUserLength:Math.round(quizCorresct*100 / quizUserLength) }} %</span></div>
+      <div class="stats__item">
+        <span>{{ quizLength }} / {{ quizUserLength }}</span>
+        <div class="statItem__discripts"><span>Кількість питань</span></div>
+      </div>
+      <div class="stats__item">
+        <span>{{quizCorresct}}</span>
+        <div class="statItem__discripts"><span>Правильні відповіді</span></div>
+      </div>
+      <div class="stats__item">
+        <span>{{ quizUserLength - quizCorresct  }}</span>
+        <div class="statItem__discripts"><span>Не правильні відповіді</span></div>
+      </div>
+      <div class="stats__item">
+        <span>w:{{quizCorresct=="0"?quizUserLength:Math.round(quizCorresct*100 / quizUserLength) }} %</span>
+        <div class="statItem__discripts"><span>% Правильних відповідей</span></div>
+      </div>
     </div>
   </div>
   <div class="userReward">
@@ -78,7 +93,7 @@ onMounted(async() =>{
     & button{
     position: relative;
     padding: 10px 25px;
-    background:$lighBlue;
+    background: $deepBlue;
     border-radius: 10px;
     border:1px $gold solid;
     @include media($mobile){
@@ -129,13 +144,14 @@ onMounted(async() =>{
     min-height: 100%;
   }
   .round{
+    position: relative;
     @include flex;
     width: 200px;
     height: 200px;
     border-radius: 50%;
     background: conic-gradient(
     blue 0% var(--progress),
-    red var(--progress) 100%,);
+    $gold var(--progress) 100%,);
       text-shadow: 1px 1px 2px $brown;
       border:1px $gold  solid;
       box-shadow: 5px 5px 7px 3px rgba(0,0,0,0.72);
@@ -145,7 +161,11 @@ onMounted(async() =>{
         width: 100px;
         height: 100px;
     }
-
+    &:hover{
+      .round__discript{
+        display: inline-block;
+      }
+    }
     &__insaid{
     width: 180px;
     height: 180px;
@@ -161,6 +181,23 @@ onMounted(async() =>{
         @include fontsize(18px,20px);
     }
     }
+    &__discript{
+      display: none;
+      position: absolute;
+      top:0%;
+      @include font($serif,400,18px,20px,$white);
+      right:-20%;
+      transform:translate(50%, -50%);
+      opacity: 0.7;
+      @include media($table){
+        @include fontsize(15px,16px);
+      }
+      @include media($mobile){
+        @include fontsize(13px,14px);
+        right:-30%;
+        max-width: 100px;
+      }
+    }
   }
   .stats{
     @include flex;
@@ -171,6 +208,7 @@ onMounted(async() =>{
     border-radius: 10px;
     text-shadow: 2px 2px 4px black;
     &__item{
+      position:relative;
       @include flex;
       @include font($RobotoSlab,400,20px,35px,$white);
       padding:0px 10px;
@@ -179,18 +217,50 @@ onMounted(async() =>{
         @include font($RobotoSlab,400,16px,20px,$white);
         padding: 0 5px;
       }
+      .statItem__discripts{
+      display: none;
+      opacity: 0.7;
+      min-width:220px;
+      position: absolute;
+      top:-50px;
+      @include font($serif,400,18px,20px,$white);
+      @include media($table){
+        @include fontsize(15px,16px);
+        top:-40px;
+      }
+      @include media($mobile){
+        @include fontsize(13px,14px);
+        top:200%;
+        left: -20px;
+      }
+    }
       &:nth-of-type(2){
         color:blue
       }
       &:nth-of-type(3){
         color: red;
+        @include media($mobile){
+          .statItem__discripts{
+          left: -50px;
+        }
+        }
       }
       &:last-of-type{
         border: none;
         color: $gold;
+        @include media($mobile){
+          .statItem__discripts{
+          left: -100px;
+        }
+        }
       }
-    }
+      &:hover{
+        .statItem__discripts{
+          display: inline-block;
+        }
+      }
   }
+}
   .userReward{
     &__title{
       @include font($playFair,600,24px,28px,$gold);

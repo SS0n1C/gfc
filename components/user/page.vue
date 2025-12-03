@@ -96,6 +96,9 @@ onMounted(async() =>{
     background: $deepBlue;
     border-radius: 10px;
     border:1px $gold solid;
+    &:hover{
+      border-color: white;
+    }
     @include media($mobile){
       padding:5px 10px;
       @include fontsize(14px,16px)

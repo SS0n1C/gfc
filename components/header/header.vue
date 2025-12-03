@@ -3,7 +3,7 @@ const store = useAutStore()
 const router = useRouter()
 const routed = useRoute()
 const userInfo = useAutStore()
-
+let ModalOn = ref()
 const logout = async () => {
     if(store.user.name !== "user"){
         await account.deleteSession("current")
@@ -11,6 +11,9 @@ const logout = async () => {
         await router.push("/login")
         store.clear()
     }
+}
+function opModalAvatar(){
+    ModalOn.value = !ModalOn.value;
 }
 onMounted(async() =>{
     try {
@@ -42,11 +45,9 @@ async function goToRevard(){
 </script>
 <template>
 <header class="header">
-    <div>
     <div class="revard items-center flex bg-[white] rounded-2xl p-1" @click="goToRevard()">
         <Icon v-if="routed.path == '/reward'|| routed.path == '/reward/'" name="fluent-color:question-circle-32" class="rewardIcon" size="28px" />
         <Icon v-else name="noto:trophy" class="rewardIcon" size="28px" />
-    </div>
     </div>
     <div class="items-center flex mr-[10px]">
         <div class="wrapper"></div>
@@ -54,20 +55,23 @@ async function goToRevard(){
             <div class="score__field"><Icon name="subway:hurt-3" style="color:red" class="score__icon" size="16px"/> <span> {{ userInfo.user.live }}</span></div>
              <div class="score__field"><Icon name="el:star-alt" style="color:#FACC15" class="score__icon" size="16px"/> <span> {{ userInfo.user.score }}</span></div>
         </div>
-        <div class="avatar">
-            <NuxtImg 
-            v-if="userInfo.user.avatar"
-            :src="userInfo.user.avatar"
-            alt="avatar"
-            width="33px"
-            height="33px"/>
-            <NuxtImg 
-            v-else
-            src="https://fra.cloud.appwrite.io/v1/storage/buckets/reward_storage/files/689c7c80000fbad6f16d/view?project=67f26d0a0035c9009631&mode=admin"
-            alt="avatar"
-            width="33px"
-            height="33px"/>
-    </div>
+        <div class="avatar" @click="opModalAvatar()">
+            <div>
+             <NuxtImg 
+                v-if="userInfo.user.avatar"
+                :src="userInfo.user.avatar"
+                alt="avatar"
+                width="33px"
+                height="33px"/>
+             <NuxtImg 
+                v-else
+                src="https://fra.cloud.appwrite.io/v1/storage/buckets/reward_storage/files/689c7c80000fbad6f16d/view?project=67f26d0a0035c9009631&mode=admin"
+                alt="avatar"
+                width="33px"
+                height="33px"/>
+            </div>
+            <div class="avatarPicker" v-if="ModalOn"></div>
+        </div>
     <div class="login">
         <div class="login__name">
             <NuxtLink to="/userPage">
@@ -79,7 +83,7 @@ async function goToRevard(){
         </div>
     </div>
     </div>
-
+    
 </header>
 </template>
 
@@ -156,6 +160,9 @@ async function goToRevard(){
 }
 .login{
     @include flex;
+    &__name :hover{
+        color:white;
+    }
     &__logout{
          cursor:pointer;
         &--icon{
@@ -172,14 +179,18 @@ async function goToRevard(){
     }
 }
 .avatar{
+    position: relative;
     background: $slickGold;
     border-radius: 20px;
     padding: 2px 3px 3px 3px;
     margin-right: 5px;
     width:50px;
     height:50px;
-    overflow: hidden;
     border:2px rgba(39, 39, 150, 0.395) solid;
+    cursor: pointer;
+    &:hover{
+        border-color: white;
+    }
     & img{
         width: 100%;
         height:100%;
@@ -190,4 +201,13 @@ async function goToRevard(){
         width: 40px;
     }
 }
+.avatarPicker{
+        z-index: 1000;
+        bottom:-400px;
+        left: -400px;
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        background-color: aqua;
+    }
 </style>

@@ -55,8 +55,8 @@ async function goToRevard(){
             <div class="score__field"><Icon name="subway:hurt-3" style="color:red" class="score__icon" size="16px"/> <span> {{ userInfo.user.live }}</span></div>
              <div class="score__field"><Icon name="el:star-alt" style="color:#FACC15" class="score__icon" size="16px"/> <span> {{ userInfo.user.score }}</span></div>
         </div>
-        <div class="avatar" @click="opModalAvatar()">
-            <div>
+        <div class="avatar">
+            <div @click="opModalAvatar()">
              <NuxtImg 
                 v-if="userInfo.user.avatar"
                 :src="userInfo.user.avatar"
@@ -70,7 +70,9 @@ async function goToRevard(){
                 width="33px"
                 height="33px"/>
             </div>
-            <div class="avatarPicker" v-if="ModalOn"></div>
+            <div class="avatarPicker" v-if="ModalOn">
+            <HeaderAvapicker/>
+            </div>
         </div>
     <div class="login">
         <div class="login__name">

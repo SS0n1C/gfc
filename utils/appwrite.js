@@ -2,8 +2,10 @@ import { APP_WRITE_ID} from '@/appconstans'
 import {DB_ID} from '@/appconstans'
 import {USER_COLLECTION} from '@/appconstans'
 import {QUIZ_COLLECTION} from '@/appconstans'
-import{REWARD_COLLECTION} from '@/appconstans'
-import { Account, Client, Databases,Query, ID} from 'appwrite'
+import {REWARD_COLLECTION} from '@/appconstans'
+import {BUCKET_STORAGE} from '@/appconstans'
+
+import { Account, Client, Databases,Query, ID, Storage} from 'appwrite'
 export const client = new Client()
 
 client.setEndpoint("https://cloud.appwrite.io/v1").setProject(APP_WRITE_ID)
@@ -11,6 +13,7 @@ client.setEndpoint("https://cloud.appwrite.io/v1").setProject(APP_WRITE_ID)
 export const account = new Account(client)
 export{ ID } from "appwrite"
 export const DB = new Databases(client)
+export const STORAGE = new Storage(client);
 
 export async function getUserData(data) {
   const docs = await DB.listDocuments(
@@ -35,8 +38,41 @@ export async function changeUserData(userData,userQuestID,userDataScore,userRewa
       rewardID:userRewardID,
       live:useLive,
       correctAnswer:correctAnswer
-    }
-)
+    })
+}
+export async function addAvatartoBucket(svgString) {
+  try {
+    const avatarFile = new File(
+      [svgString],
+      'avatar.svg',
+      { type: 'image/svg+xml' }
+    );
+    const resp = await STORAGE.createFile(
+      BUCKET_STORAGE,
+      ID.unique(),
+      avatarFile
+    );
+    return resp;
+  } catch (error) {
+    console.log("Error uploading SVG:", error);
+  }
+}
+export async function changeUserAvatar(userId, newAvatar) {
+  try {
+    const avatarUrl = STORAGE.getFileDownload(BUCKET_STORAGE, newAvatar.$id);
+    const updatedUser = await DB.updateDocument(
+      DB_ID,
+      USER_COLLECTION,
+      userId,
+      {
+        avatar: avatarUrl
+      }
+    );
+
+    return updatedUser;
+  } catch (error) {
+    console.error("Error updating user avatar:", error);
+  }
 }
 export async function createUserData(user) {
   const createDoc =  await DB.createDocument(

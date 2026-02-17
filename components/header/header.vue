@@ -4,6 +4,9 @@ const router = useRouter()
 const routed = useRoute()
 const userInfo = useAutStore()
 let ModalOn = ref()
+const user = await account.get()
+const userScore = await getUserData(user)
+
 const logout = async () => {
     if(store.user.name !== "user"){
         await account.deleteSession("current")
@@ -17,8 +20,6 @@ function opModalAvatar(){
 }
 onMounted(async() =>{
     try {
-        const user = await account.get()
-        const userScore = await getUserData(user)
         store.set({
             score:userScore.data,
             live:userScore.live,
@@ -41,7 +42,6 @@ async function goToRevard(){
 
 
 }
-
 </script>
 <template>
 <header class="header">
@@ -57,9 +57,9 @@ async function goToRevard(){
         </div>
         <div class="avatar">
             <div @click="opModalAvatar()">
-             <NuxtImg 
-                v-if="userInfo.user.avatar"
-                :src="userInfo.user.avatar"
+             <img
+                v-if="userScore.avatar"
+                :src="userScore.avatar"
                 alt="avatar"
                 width="33px"
                 height="33px"/>
@@ -71,7 +71,7 @@ async function goToRevard(){
                 height="33px"/>
             </div>
             <div class="avatarPicker" v-if="ModalOn">
-            <HeaderAvapicker/>
+            <HeaderAvapicker  v-model:closeModal="ModalOn"/>
             </div>
         </div>
     <div class="login">
@@ -84,6 +84,7 @@ async function goToRevard(){
             <Icon name="uil:exit" style="color: #FACC15" class="login__logout--icon"  size="20px" />
         </div>
     </div>
+    
     </div>
     
 </header>

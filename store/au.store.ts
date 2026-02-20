@@ -28,9 +28,14 @@ export const useAutStore = defineStore("isAuth",{
         clear(){
             this.$patch(defaultUser)
         }, 
-        set(input: IautStore){
-            this.$patch({user:input})
-        }
+        set(input: Partial<IautStore>) {
+            this.$patch({
+                user: {
+                ...this.user,
+                ...input
+                }
+            })
+    }
         
     }
 })

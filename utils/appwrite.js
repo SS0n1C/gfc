@@ -68,7 +68,6 @@ export async function changeUserAvatar(userId, newAvatar) {
         avatar: avatarUrl
       }
     );
-
     return updatedUser;
   } catch (error) {
     console.error("Error updating user avatar:", error);

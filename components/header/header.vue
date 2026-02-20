@@ -1,44 +1,40 @@
 <script setup>
-const store = useAutStore()
 const router = useRouter()
 const routed = useRoute()
 const userInfo = useAutStore()
+const { user } = storeToRefs(userInfo)
 let ModalOn = ref()
-const defUser = useAutStore()
 const useAuth  = async () => {
   try{
     const user = await account.get()
     const userScore =  await getUserData(user)
+            userInfo.set({
+            score:userInfo.data,
+            live:userInfo.live,
+            avatar:userScore.avatar,
+        })
     return userScore 
   } catch {
-    return defUser.user
+     router.push("/login")
+    return userInfo.user
   }
 }
 const userScore = await useAuth()
 const logout = async () => {
-    if(store.user.name !== "user"){
+        if(userInfo.user.name !=="guest"){
         await account.deleteSession("current")
         console.log("exit")
         await router.push("/login")
-        store.clear()
-    }
+        userInfo.clear()
+        } else{
+            console.log("exit")
+        }
 }
 function opModalAvatar(){
     ModalOn.value = !ModalOn.value;
 }
-onMounted(async() =>{
-    try {
-        store.set({
-            score:userScore.data,
-            live:userScore.live,
-            avatar:userScore.avatar,
-        })
-    } catch (error) {
-        router.push("/login")
-    }
-})
 async function goToRevard(){
-    if(store.user.name !== "guest"){
+    if(userInfo.user.name !== "guest"){
         if(routed.path == '/reward' || routed.path == '/reward/'){
             router.push("/")
         }else{
@@ -66,8 +62,9 @@ async function goToRevard(){
         <div class="avatar">
             <div @click="opModalAvatar()">
              <img
-                v-if="userScore.avatar"
-                :src="userScore.avatar"
+                v-if="user?.avatar"
+                :key="user.avatar"
+                 :src="user.avatar"
                 alt="avatar"/>
              <NuxtImg 
                 v-else

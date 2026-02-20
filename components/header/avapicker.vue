@@ -1,19 +1,20 @@
 <script setup>
 const {data} = await useFetch("/gfc/api/avatarPicker")
+const store = useAutStore()
 const user = await account.get()
 const userData = await getUserData(user)
 const props = defineProps({ closeModal: Boolean })
 const emit = defineEmits(['update:closeModal'])
 
 async function choicenewAvatar(avaData){
-    let conf = confirm("Ти впевнена?")
-    if(conf){
+    if(confirm("Tи впевнена?")){
         const newAva = await addAvatartoBucket(avaData)
-        await changeUserAvatar(userData.$id,newAva)
+        const updatedUser = await changeUserAvatar(userData.$id, newAva)
+        store.set({
+            avatar:updatedUser.avatar,
+        })
         emit('update:closeModal', !props.closeModal)
-    } else{
-        emit('update:closeModal', !props.closeModal)
-    }
+    } 
 }
 
 </script>

@@ -4,6 +4,7 @@ const userPassword = ref("")
 const autStore =  useAutStore()
 const router = useRouter()
 const useloader = useLoading()
+
 const login = async() =>{
 useloader.set(true)
 try{
@@ -34,11 +35,12 @@ finally{
 
 onMounted(async() =>{
     try{
-        const user = await account.get()
+        const user = await useAuth()
         if(user){
             router.push("/")
-        }
+        } 
     }  catch (err) {
+
     }  finally{
     }
 

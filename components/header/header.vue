@@ -2,10 +2,18 @@
 const store = useAutStore()
 const router = useRouter()
 const routed = useRoute()
-const userInfo = useAutStore()
 let ModalOn = ref()
-const user = await account.get()
-const userScore = await getUserData(user)
+const defUser = useAutStore()
+const useAuth  = async () => {
+  try{
+    const user = await account.get()
+    const userScore =  await getUserData(user)
+    return userScore 
+  } catch {
+    return defUser.user
+  }
+}
+const userScore = await useAuth()
 
 const logout = async () => {
     if(store.user.name !== "user"){
@@ -52,17 +60,15 @@ async function goToRevard(){
     <div class="items-center flex mr-[10px]">
         <div class="wrapper"></div>
         <div class="score pr-[20px]">
-            <div class="score__field"><Icon name="subway:hurt-3" style="color:red" class="score__icon" size="16px"/> <span> {{ userInfo.user.live }}</span></div>
-             <div class="score__field"><Icon name="el:star-alt" style="color:#FACC15" class="score__icon" size="16px"/> <span> {{ userInfo.user.score }}</span></div>
+            <div class="score__field"><Icon name="subway:hurt-3" style="color:red" class="score__icon" size="16px"/> <span> {{userScore.live }}</span></div>
+             <div class="score__field"><Icon name="el:star-alt" style="color:#FACC15" class="score__icon" size="16px"/> <span> {{ userScore.data }}</span></div>
         </div>
         <div class="avatar">
             <div @click="opModalAvatar()">
              <img
                 v-if="userScore.avatar"
                 :src="userScore.avatar"
-                alt="avatar"
-                width="33px"
-                height="33px"/>
+                alt="avatar"/>
              <NuxtImg 
                 v-else
                 src="https://fra.cloud.appwrite.io/v1/storage/buckets/reward_storage/files/689c7c80000fbad6f16d/view?project=67f26d0a0035c9009631&mode=admin"
@@ -197,7 +203,8 @@ async function goToRevard(){
     & img{
         width: 100%;
         height:100%;
-        object-fit: cover;
+        object-fit: fill;
+        border-radius: 50%;
     }
     @include media($mobile){
         height: 40px;
@@ -211,6 +218,8 @@ async function goToRevard(){
         position: absolute;
         width: 400px;
         height: 400px;
-        background-color: aqua;
+        border-radius: 10px;
+        border:1px $gold solid;
+        background-color: wheat;
     }
 </style>

@@ -5,7 +5,7 @@ export default defineEventHandler(async () => {
   let blend = avatarArr.sort(() => Math.random() - 0.5);
   let unicAvaArr = blend.slice(0, 8);
   const req = unicAvaArr.map(unicAva =>
-    $fetch(`https://api.dicebear.com/9.x/adventurer/svg?seed=${unicAva}`,
+    $fetch(`https://api.dicebear.com/9.x/adventurer/svg?seed=${unicAva}&scale=135`,
       { responseType: "text" }
     )
   )

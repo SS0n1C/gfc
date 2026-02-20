@@ -10,6 +10,7 @@ async function choicenewAvatar(avaData){
     if(conf){
         const newAva = await addAvatartoBucket(avaData)
         await changeUserAvatar(userData.$id,newAva)
+        emit('update:closeModal', !props.closeModal)
     } else{
         emit('update:closeModal', !props.closeModal)
     }
@@ -39,9 +40,11 @@ async function choicenewAvatar(avaData){
     .item{
         width: 110px;
         height: 110px;
-        border:4px red double;
+        border:3px red double;
+        border-radius: 10px;
         &:hover{
             border-color: blue;
+            background-color: white;
         }
         &:first-child{
             border:4px blueviolet double;

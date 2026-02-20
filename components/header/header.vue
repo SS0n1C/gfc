@@ -2,6 +2,7 @@
 const store = useAutStore()
 const router = useRouter()
 const routed = useRoute()
+const userInfo = useAutStore()
 let ModalOn = ref()
 const defUser = useAutStore()
 const useAuth  = async () => {
@@ -14,7 +15,7 @@ const useAuth  = async () => {
   }
 }
 const userScore = await useAuth()
-
+console.log(userName)
 const logout = async () => {
     if(store.user.name !== "user"){
         await account.deleteSession("current")
